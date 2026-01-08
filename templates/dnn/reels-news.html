@@ -2,26 +2,38 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css">
 
 <div class="insta-section">
-  <h3>हमें इंस्टाग्राम पर फॉलो करें<span>@हिमाचल</span></h3>
+  <h4 class="text-white">Follow us on Instagram<span> @Dxbindia</span></h4>
 
   <div class="swiper insta-slider py-3">
     <div class="swiper-wrapper">
-      {% for truet in tt %}
-      <div class="swiper-slide insta-slide">
-        <a data-fancybox="reels"
-           data-src="https://www.youtube.com/watch?v={{ truet.video_url }}"
-           data-type="iframe">
-          <div class="reelimg">
-            <p class="reelplaybut">
-              <i class="fa fa-play-circle" aria-hidden="true"></i>
-            </p>
-            <img src="https://img.youtube.com/vi/{{ truet.video_url }}/mqdefault.jpg"
-                 alt="{{ truet.slug }}"
-                 class="reelthum">
-          </div>
-        </a>
-      </div>
-      {% endfor %}
+     {% for truet in tt %}
+<div class="swiper-slide insta-slide">
+
+  <!-- Insta icon overlay -->
+  {% if profile_setting.instagram %}
+  <a href="{{ profile_setting.instagram }}" 
+     target="_blank" 
+     class="insta-icon-overlay">
+      <i class="bi bi-instagram"></i>
+  </a>
+  {% endif %}
+
+  <!-- Reel Fancybox link -->
+  <a data-fancybox="reels"
+     data-src="https://www.youtube.com/embed/{{ truet.video_url }}"
+     data-type="iframe">
+    <div class="reelimg">
+      <p class="reelplaybut">
+        <i class="fa fa-play-circle" aria-hidden="true"></i>
+      </p>
+      <img src="https://img.youtube.com/vi/{{ truet.video_url }}/mqdefault.jpg"
+           alt="{{ truet.slug }}"
+           class="reelthum">
+    </div>
+  </a>
+
+</div>
+{% endfor %}
     </div>
   </div>
 </div>
@@ -57,17 +69,36 @@ Fancybox.bind('[data-fancybox="reels"]', {
 </script>
 
 <style>
+  .insta-icon-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: white !important;
+  font-size: 18px;
+}
+.insta-icon-overlay:hover {
+  background: rgba(255,0,0,0.8);
+}
+.swiper-slide {
+  position: relative;
+}
+
   .insta-section {
   background: #222;
   padding: 20px;
   text-align: center;
   color: white;
+  border-radius: 6px;
 }
-.insta-section h3 span {
+.insta-section  span {
   color: red;
 }
 .insta-section .insta-slide {
-  width: 200px !important;
+  width: 250px !important;
 }
 
 .insta-section .swiper-wrapper {
@@ -98,7 +129,7 @@ Fancybox.bind('[data-fancybox="reels"]', {
   transform: translate(-50%, -50%);
   color: white;
   border-radius: 50%;
-  padding: 10px;
+  padding: 7px;
   font-size: 24px;
   transition: all 0.3s ease;
   width: 50px;

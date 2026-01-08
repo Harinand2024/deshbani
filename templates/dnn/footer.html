@@ -1,155 +1,222 @@
-<footer id="uc-footer" class="bg-dark text-white pt-5 pb-3">
-  <div class="container">
-    <div class="row">
+{% load static %}
 
-      <!-- Logo & Social -->
-      <div class="col-lg-4 col-md-12 mb-4">
-        <a href="/">
-          <img src="{{ profile_setting.logo_light.url }}" alt="Logo" class="img-fluid mb-3" style="max-width: 250px;">
-        </a>
-        <p class="small">
-         हिमाचल न्यूज़ — पहाड़ों की आवाज़, हिमाचल की धड़कन।
-        शिमला से स्पीति, कुल्लू से कांगड़ा तक — हम लाते हैं बेबाक रिपोर्टिंग, ज़मीनी कहानियां और सांस्कृतिक कथाएं, हिमाचल प्रदेश के दिल से — और उससे आगे।
-        हम उन राष्ट्रीय घटनाक्रमों को भी कवर करते हैं जो राज्य को प्रभावित करते हैं — चाहे वह पर्यटन हो, पर्यावरण, अवसंरचना या शासन।
-        हम सहयोग, पीआर कैंपेन और नैतिक ब्रांड साझेदारियों के लिए खुले हैं।
+<footer class="footer-glass text-light pt-5 pb-4">
+  <div class="container position-relative z-2">
+    <div class="row gy-4">
 
-        हिमाचल न्यूज़ — पहाड़ों से, जनता के लिए।
-
+      <!-- 🟦 About -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="fw-bold mb-3 position-relative">About Dxb India
+          <span class="footer-underline"></span>
+        </h5>
+        <p class="small opacity-75 mb-3">
+          <strong>DXB India News</strong> — The Voice of the People, The Pulse of the Nation.<br><br>
+          From local streets to global headlines, DXB India News stands for fearless, unbiased, and impactful journalism.  
+          We bring you real stories that matter — stories that shape opinions, empower communities, and celebrate India’s vibrant spirit.  
+          
+          <em>DXB India News — Bold. Real. Connected to Every Indian.</em>
         </p>
-        <div class="d-flex gap-2">
-          <ul class="list-unstyled d-flex  gap-3">
-            {% if profile_setting.facbook %}
-              <li class="">
-                <a href="{{ profile_setting.facbook }}" target="_blank" class="nav-link text-white fs-4">
-                  <i class="bi bi-facebook"></i>
-                </a>
-              </li>
-            {% endif %}
-            {% if profile_setting.twitter %}
-              <li class="">
-                <a href="{{ profile_setting.twitter }}" target="_blank" class="nav-link text-white fs-4">
-                  <i class="bi bi-twitter"></i>
-                </a>
-              </li>
-            {% endif %}
-            {% if profile_setting.instagram %}
-              <li class="">
-                <a href="{{ profile_setting.instagram }}" target="_blank" class="nav-link text-white fs-4">
-                  <i class="bi bi-instagram"></i>
-                </a>
-              </li>
-            {% endif %}
-            {% if profile_setting.youtube %}
-              <li class="">
-                <a href="{{ profile_setting.youtube }}" target="_blank" class="nav-link text-white fs-4">
-                  <i class="bi bi-youtube"></i>
-                </a>
-              </li>
-            {% endif %}
-            {% if profile_setting.linkedin %}
-              <li class="">
-                <a href="{{ profile_setting.linkedin }}" target="_blank" class="nav-link text-white fs-4">
-                  <i class="bi bi-linkedin"></i>
-                </a>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
+
+        <p class="small mb-1"><strong>Email:</strong> contact@janpunjabnews.in</p>
+        <p class="small"><strong>Fax:</strong> +91 0369 2599 003</p>
       </div>
 
-      <!-- Articles -->
-          <div class="col-lg-5 col-md-12 col-sm-12 mb-3 px-5">
-              <div class="widget links-widget vstack gap-3">
-                <div class="widgt-title">
-                  <h3 class="fs-5 text-left m-0 text-white">अनुच्छेद</h3>
-                </div>
+      <!-- 🟦 Popular Articles -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="fw-bold mb-3 position-relative">Popular Headlines
+            <span class="footer-underline"></span>
+          </h5>
+          <div class="d-flex flex-column gap-2">
+            {% for article in headline|slice:":5" %}
+              <a href="/{{ article.slug }}" class="footer-link d-block fw-semibold">
+                {{ article.post_title|truncatechars:55 }}
+              </a>
+            {% empty %}
+              <p class="small opacity-75 mb-0">No popular articles found.</p>
+            {% endfor %}
+          </div>
+        </div>
 
-                <!-- Reduce gutter (gap) -->
-                <div class="row gx-3 gy-2 d-flex "> <!-- Changed from g-4 to g-2 -->
-                  {% for article in Articale|slice:":12" %}
-                  <div class=" col-md-3"> <!-- Reduced padding -->
-                    <a class="text-decoration-none" href="/{{ article.newsfrom.slug }}/{{ article.post_cat.sub_cat.cat_slug }}/{{ article.slug }}">
-                      <div class="rounded border-0 text-start">
-                        <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}"
-                          title="{{ article.post_title }}" class="img-fluid rounded w-100px h-auto" loading="lazy" />
-                       
-                      </div>
-                    </a>
-                  </div>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
 
-      <!-- Quick Links -->
-      <div class="col-lg-3 col-md-12 mb-4">
-        <h5 class="text-uppercase">महत्वपूर्ण लिंक</h5>
-        <ul class="list-unstyled small">
+      <!-- 🟦 Latest News -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="fw-bold mb-3 position-relative">Latest News
+          <span class="footer-underline"></span>
+        </h5>
+        {% for news in LatestNews|slice:":3" %}
+        <div class="mb-3">
+          <a href="/{{ news.slug }}" class="text-white text-decoration-none fw-semibold d-block mb-1 footer-news-link">
+            {{ news.post_title|truncatechars:65 }}
+          </a>
+          <div class="small opacity-75">
+            <span class="me-2">By ADMIN</span>
+            <i class="bi bi-calendar-event me-1"></i> {{ news.schedule_date|date:"M d, Y" }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- 🟦 Useful Links -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="fw-bold mb-3 position-relative">Useful Links
+          <span class="footer-underline"></span>
+        </h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'contact-us' %}" class="footer-link">Contact Us</a></li>
           {% for page in pages %}
-          <li><a href="{% url 'cms' page.slug %}" class="text-white text-decoration-none">{{ page.pagename }}</a></li>
+          <li class="mb-2"><a href="{% url 'cms' page.slug %}" class="footer-link">{{ page.pagename }}</a></li>
           {% endfor %}
-          <li><a href="{% url 'sitemap' %}" class="text-white text-decoration-none">साइट मानचित्र</a></li>
+          <li><a href="{% url 'sitemap' %}" class="footer-link">Sitemap</a></li>
+          
         </ul>
       </div>
-
     </div>
 
-    <hr class="border-light">
-    
-    <!-- Footer Bottom -->
-    <div class="text-center small">
+    <hr class="border-secondary mt-5 mb-4">
 
-      <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> {{ profile_setting.copyright|default:"janhimachal. All rights reserved." }}</p>
-    
+    <!-- 🟦 Bottom Bar -->
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between text-center text-md-start">
+      <div class="d-flex align-items-center mb-3 mb-md-0">
+        <img src="{{ profile_setting.logo_light.url }}" alt="Logo" class="me-2" style="max-height: 40px;">
+      
+      </div>
+
+      <div class="small opacity-75 mb-3 mb-md-0">
+        &copy; <script>document.write(new Date().getFullYear())</script> Dxb India News. All Rights Reserved.
+      </div>
+
+      <div class="d-flex gap-3 fs-5">
+        {% if profile_setting.facbook %}
+        <a href="{{ profile_setting.facbook }}" target="_blank" class="text-white"><i class="bi bi-facebook"></i></a>
+        {% endif %}
+        {% if profile_setting.twitter %}
+        <a href="{{ profile_setting.twitter }}" target="_blank" class="text-white"><i class="bi bi-twitter-x"></i></a>
+        {% endif %}
+        {% if profile_setting.linkedin %}
+        <a href="{{ profile_setting.linkedin }}" target="_blank" class="text-white"><i class="bi bi-linkedin"></i></a>
+        {% endif %}
+        {% if profile_setting.instagram %}
+        <a href="{{ profile_setting.instagram }}" target="_blank" class="text-white"><i class="bi bi-instagram"></i></a>
+        {% endif %}
+        {% if profile_setting.youtube %}
+        <a href="{{ profile_setting.youtube }}" target="_blank" class="text-white"><i class="bi bi-youtube"></i></a>
+        {% endif %}
+      </div>
     </div>
-
   </div>
+
+  <!-- Floating Buttons -->
   <a href="/" class="floating-home-btn" title="Go to Home">
     <i class="fas fa-home"></i>
-</a>
-    <button onclick="scrollToTop()" class="scroll-up-button" id="scrollTopBtn">
+  </a>
+  <button onclick="scrollToTop()" class="scroll-up-button" id="scrollTopBtn">
     <i class="fas fa-arrow-up"></i>
-</button>
-
+  </button>
 </footer>
+
+<!-- Scroll Script -->
 <script>
-
-    // Show Scroll Button When Scrolled
-
-    window.onscroll = function () {
-
-        var scrollBtn = document.getElementById("scrollTopBtn");
-
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-
-            scrollBtn.style.display = "block";
-
-        } else {
-
-            scrollBtn.style.display = "none";
-
-        }
-
-    };
-
-
-
-    // Scroll to Top Smoothly
-
-    function scrollToTop() {
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
+  window.onscroll = function () {
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
     }
-
+  };
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 </script>
+
 <style>
-    .nav-link:hover {
-        color: #ee3309 !important;
-    } 
+/* 🎨 Glass Blur Premium Footer */
+.footer-glass {
+  position: relative;
+  background: rgba(13, 13, 13, 0.75);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff !important;
+  font-family: "Inter", sans-serif;
+}
+.footer-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(0,123,255,0.1), transparent 70%);
+  z-index: 1;
+}
+.footer-glass h5 {
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+.footer-underline {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 35px;
+  height: 2px;
+  background: linear-gradient(90deg, #cb1e24, #f07277);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.footer-glass h5:hover .footer-underline {
+  width: 60px;
+}
+.footer-tag {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  color: #fff !important;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.footer-tag:hover {
+  background: linear-gradient(90deg, #cb1e24, #f07277);
+  box-shadow: 0 0 10px #ed1c24 (0,123,255,0.5);
+  border-color: transparent;
+  text-decoration: none;
+}
+.footer-link {
+  color: #fff !important;
+  font-size: 0.9rem;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+.footer-link:hover {
+  opacity: 1;
+  color: #ed1c24 !important;
+  text-decoration: none;
+}
+.footer-news-link:hover {
+  color: #ed1c24 !important;
+}
+.footer small {
+  color: rgba(255,255,255,0.75);
+}
+
+/* 🌟 Floating Buttons */
+.scroll-up-button,
+.floating-home-btn {
+  position: fixed;
+  right: 20px;
+  z-index: 1000;
+  border: none;
+  border-radius: 50%;
+  background: #ed1c24;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+.scroll-up-button { bottom: 80px; display: none; }
+.floating-home-btn { bottom: 20px; }
+.scroll-up-button:hover,
+.floating-home-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 15px #ed1c24 (0,191,255,0.6);
+}
+</style>

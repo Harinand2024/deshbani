@@ -1,65 +1,71 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
+
 <head>
-<!-- ✅ BASIC META TAGS -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="copyright" content="Jan Himachal. All rights reserved.">
-<meta name="author" content="Jan Himachal Team">
-<meta name="language" content="hi">
-<meta name="distribution" content="global">
-<meta name="theme-color" content="#0d6efd">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="copyright" content="Markazia Solutions LLC-FZ. All rights reserved." />
+  <meta name="distribution" content="global" />
+  <meta name="twitter:site" content="@dxbnewsnetwork" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:domain" content="https://www.dxbnewsnetwork.com/" />
+  <meta property="fb:pages" content="173638345826971" />
+  <meta property="og:site_name" content="Dxb News Network" />
+  <meta property="og:locale" content="en" />
+  <meta property="fb:app_id" content="2220391788200892" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image:type" content="image/png" />
+  <meta name="author" content="Official Correspondence">
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="google-adsense-account" content="ca-pub-5922835412614482">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
+    crossorigin="anonymous"></script>
 
   {% if indseo == 'ndetail' %}
   <title>{{Blogdetails.post_title}}</title>
   <meta property="og:title" content="{{Blogdetails.post_title}}" />
   <meta property="twitter:title" content="{{Blogdetails.post_title}}" />
-  <meta name="description" content="{{Blogdetails.post_short_des }} Jan Himachal" />
-  <meta property="og:description" content="{{Blogdetails.post_short_des }} Jan Himachal" />
-  <meta property="twitter:description" content="{{Blogdetails.post_short_des }} Jan Himachal" />
-  <meta name="news_keywords" content="Jan Himachal, breaking news, 
-  {% for tag in Blogdetails.tags.all %}{{tag.name}},
-  {% endfor %}" />
-  <meta property="og:url" content="https://www.janhimachal.com{{ request.path }}" />
-  <meta property="twitter:url" content="https://www.janhimachal.com{{ request.path }}" />
-  <meta property="og:image" content="https://www.janhimachal.com/upload/{{Blogdetails.post_image}}" />
-  <meta name="twitter:image" content="https://www.janhimachal.com/upload/{{Blogdetails.post_image}}" />
-  <link rel="canonical" href="https://www.janhimachal.com{{ request.path }}" />
-
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="fb:pages" content="742922868908650">
-  <meta property="og:locale" content="hi_IN">
-  
+  <meta name="description" content="{{Blogdetails.post_short_des }} DXB News Network" />
+  <meta property="og:description" content="{{Blogdetails.post_short_des }} DXB News Network" />
+  <meta property="twitter:description" content="{{Blogdetails.post_short_des }} DXB News Network" />
+  <meta name="news_keywords" content="DXB News Network, breaking news, 
+{% for tag in Blogdetails.tags.all %}{{tag.name}},
+{% endfor %}
+  " />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta property="twitter:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/upload/{{Blogdetails.post_image}}" />
+  <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/upload/{{Blogdetails.post_image}}" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
-      "headline": "Heavy Rain and Snowfall Alert in Himachal Pradesh",
-      "description": "The weather department warns of heavy rain in lower areas and snowfall in higher regions of Himachal Pradesh. Travel and tourism may be affected.",
+      "headline": "{{ Blogdetails.post_title }}",
+      "description": "{{ Blogdetails.post_short_des }}",
       "image": [
-        "https://www.janhimachal.com/upload/newsimage/2025/10/09/FIRDlR0XoAk00ws.jpg"
+        "{% if Blogdetails.post_image %}{{ request.scheme }}://{{ request.get_host }}{{ Blogdetails.post_image.url }}{% else %}https://www.dxbnewsnetwork.com/static/assets/img/default-news.jpg{% endif %}"
       ],
       "author": {
         "@type": "Person",
-        "name": "Shivani"
+        "name": "{{ Blogdetails.author.username }}"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Jan Himachal",
+        "name": "DXB News Network",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://www.janhimachal.com/static/assets/img/logo.svg"
+          "url": "https://www.dxbnewsnetwork.com/static/assets/img/logow.svg"
         }
       },
-      "datePublished": "2025-10-09T11:31:00+05:30",
-      "dateModified": "2025-10-09T12:05:00+05:30",
-      "mainEntityOfPage": "https://www.janhimachal.com/himachal-pradesh/weather-desk/himachal-heavy-rain-snow-alert"
+
+      "datePublished": "{{ Blogdetails.post_date }}",
+      "dateModified": "{{ Blogdetails.updated_at }}",
+      "mainEntityOfPage": "https://www.dxbnewsnetwork.com{{ request.path }}",
+      "inLanguage": "en",
+      "articleBody": "{{ Blogdetails.post_des|striptags }}"
     }
-    
     </script>
 
   {% elif indseo == 'video' %}
@@ -69,19 +75,43 @@
   <meta name="description" content="{{Vnews.video_short_des}}" />
   <meta property="og:description" content="{{Vnews.video_short_des}}" />
   <meta property="twitter:description" content="{{Vnews.video_short_des}}" />
-  <meta name="news_keywords" content="Jan Himachal, breaking news, {{Vnews.video_title}}" />
-  <meta property="og:url" content="https://www.janhimachal.com{{ request.path }}" />
-  <meta name="twitter:url" content="https://www.janhimachal.com{{ request.path }}" />
+  <meta name="news_keywords" content="DXB News Network, breaking news, {{Vnews.video_title}}" />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta name="twitter:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
   <meta property="og:image" content="https://img.youtube.com/vi/{{Vnews.video_url}}/mqdefault.jpg" />
   <meta name="twitter:image" content="https://img.youtube.com/vi/{{Vnews.video_url}}/mqdefault.jpg" />
-  <link rel="canonical" href="https://www.janhimachal.com{{ request.path }}" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  {% elif indseo == 'voicesofuae' %}
+  <title>inspiring achievements of individuals from diverse fields and backgrounds in the UAE</title>
+  <meta property="og:title"
+    content="inspiring achievements of individuals from diverse fields and backgrounds in the UAE" />
+  <meta property="twitter:title"
+    content="inspiring achievements of individuals from diverse fields and backgrounds in the UAE" />
+  <meta name="description"
+    content="Celebrating Achievers Across Fields The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE." />
+  <meta property="og:description"
+    content="Celebrating Achievers Across Fields The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE." />
+  <meta property="twitter:description"
+    content="Celebrating Achievers Across Fields The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE." />
+  <meta name="news_keywords"
+    content="Celebrating Achievers Across Fields The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE." />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta name="twitter:url" content="https://twitter.com/dxbnewsnetwork" />
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/static/assets/img/voice-of-uae-og.jpg" />
+  <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/static/assets/img/voice-of-uae-og.jpg" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
 
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="fb:pages" content="742922868908650">
-  <meta property="og:locale" content="hi_IN">
-  
+  {% elif indseo %}
+  <title>{{ indseo.metatitle }}</title>
+  <meta name="description" content="{{ indseo.metadescription }}">
+  <meta property="og:title" content="{{ indseo.metatitle }}">
+  <meta property="og:description" content="{{ indseo.metadescription }}">
+  <meta name="twitter:title" content="{{ indseo.metatitle }}">
+  <meta name="twitter:description" content="{{ indseo.metadescription }}">
+  <meta name="news_keywords" content="{{ indseo.metatitle }}">
+  <meta property="og:image"
+    content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg">
+
   {% else %}
   <title>{{indseo.metatitle}}</title>
   <meta property="og:title" content="{{indseo.metatitle}}" />
@@ -89,69 +119,35 @@
   <meta name="description" content="{{indseo.metadescription}}" />
   <meta property="og:description" content="{{indseo.metadescription}}" />
   <meta property="twitter:description" content="{{indseo.metadescription}}" />
-  <meta property="og:url" content="https://www.janhimachal.com{{ request.path }}" />
-  <meta name="twitter:url" content="https://twitter.com/JanHimachal" />
-  <meta name="x:url" content="https://x.com/JanHimachal" />
-  <meta property="og:image" content="https://www.janhimachal.com/upload/logo/Jan_Himachal_78mKZBR.png" />
-  <meta name="twitter:image" content="https://www.janhimachal.com/upload/logo/Jan_Himachal_78mKZBR.png" />
-  <link rel="canonical" href="https://www.janhimachal.com" />
+  <meta name="news_keywords" content="{{indseo.metakeyword}}" />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta name="twitter:url" content="https://twitter.com/dxbnewsnetwork" />
+  <meta property="og:image"
+    content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg" />
+  <meta name="twitter:image"
+    content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  {% endif %}
 
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="fb:pages" content="742922868908650">
-  <meta property="og:locale" content="hi_IN">
-
-  <!-- ✅ NEWS & SEARCH RELATED -->
-<meta name="news_keywords" content="हिमाचल, समाचार, Jan Himachal, Hindi News, Himachal Pradesh News">
-<meta name="revisit-after" content="1 day">
-<meta name="rating" content="General">
-<meta name="coverage" content="Himachal Pradesh">
-<meta name="target" content="all">
-<meta name="geo.region" content="IN-HP">
-<meta name="geo.placename" content="Himachal Pradesh, India">
-<meta name="distribution" content="global">
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "NewsMediaOrganization",
-    "name": "Jan Himachal",
-    "alternateName": "JH",
-    "url": "https://www.janhimachal.com/",
-    "logo": "https://www.janhimachal.com/upload/logo/Jan_Himachal_78mKZBR.png",
-    "contactPoint": [{
-      "@type": "ContactPoint",
-      "telephone": "+91 8288872982",
-      "contactType": "customer service",
-      "contactOption": "TollFree",
-      "areaServed": "IN",
-      "availableLanguage": "Hindi, English"
-    }],
-    "sameAs": [
-          "https://www.facebook.com/janhimachal/",
-          "https://x.com/JanHimachal",
-          "https://www.linkedin.com/company/jan-himachal/"
-          "https://www.youtube.com/@JanHimachal"
-    ]
-  }
-  </script>
-  
-{% endif %}
-
+  {% if request.user.id %}
+  <link href="{% static 'assets/dist/css/AdminLTE.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/dist/css/AdminLTE.min.css' %}" rel="stylesheet">
+  {% endif %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'assets/dnn/css/style.css' %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'assets/dnn/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Coda:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Coda:wght@400;800&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'assets/dnn/fonts/stylesheet_roboto.css' %}">
   <link rel="icon" type="image/x-icon" href="{% static 'assets/dnn/img/favicon.png' %}">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -160,69 +156,123 @@
   <link rel="stylesheet" href="{% static 'assets/dnn2/index.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'assets/dnn2/hnews.css' %}">
+  
+
+
+
 
   <meta name="google-site-verification" content="b9AgCekDpKNwcfl2DFgOyqMtXk6PIwJ80ozmaG0vQI0" />
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-K8VNS7F5');</script>
 
- <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K96MVJ7G');</script>
-<!-- End Google Tag Manager -->
+  <script type="application/ld+json">
 
-  
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "DXB News Network",
+    "alternateName": "DNN",
+    "url": "https://www.dxbnewsnetwork.com/",
+    "logo": "https://www.dxbnewsnetwork.com/static/assets/img/logo.svg",
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+971 564503476",
+      "contactType": "customer service",
+      "contactOption": "TollFree",
+      "areaServed": "AE",
+      "availableLanguage": "en"
+    }],
+    "sameAs": [
+      "https://www.facebook.com/dxbnewsnetwork/",
+      "https://www.youtube.com/channel/UCZHYpwn-EbdTFbJ3-qQx_Yg",
+      "https://www.instagram.com/dxbnewsnetwork/",
+      "https://twitter.com/dxbnewsnetwork",
+      "https://www.linkedin.com/company/dxb-news-network/"
+    ]
+  }
+
+  </script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Jan Himachal",
-    "url": "https://www.janhimachal.com/",
+    "name": "DXB News Network",
+    "url": "https://www.dxbnewsnetwork.com/",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.janhimachal.com/search?q={search_term_string}",
+      "target": "https://www.dxbnewsnetwork.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
   </script>
 
   <style>
-   :root {
-    --background-color: {{ profile_setting.background_theme_light|default:"#ffffff" }};
-    --text-color: #000000;
-    --primary-color: #0d6efd;
-  }
+    /* Hindi */
+    html[lang="hi"] body a {
+      font-size: 14px !important;
+    }
 
-  body.dark-mode {
-    --background-color: {{ profile_setting.background_theme_dark|default:"#121212" }};
-    --text-color: #ffffff;
-    --primary-color: #0d6efd;
-  }
+    /* Default English */
+    html[lang="en"] body a {
+      font-size: 14px !important;
+    }
 
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
 
-  .Container_background {
-    background-color: {{ profile_setting.container_background|default_if_none:"#fcf8e7" }};
-  }
+    :root {
+  --background-color: {{ profile_setting.background_theme_light|default:"#ffffff !important" }};
+  --text-color: #000000;
+  --primary-color: #0d6efd;
+}
 
-  .items_background {
-    background-color: {{ profile_setting.items_background|default_if_none:"#ffffff" }};
-  }
+body.dark-mode {
+  --background-color: {{ profile_setting.background_theme_dark|default:"#121212" }};
+  --text-color: #ffffff;
+  --primary-color: #0d6efd;
+}
 
-  .body_img {
+body {
+  background-color: var(--background-color) !important;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+    .Container_background {
+      background-color: { {
+          profile_setting.container_background|default_if_none: "#fcf8e7"
+        }
+      }
+
+      ;
+    }
+
+    .items_background {
+      background-color: {
+          {
+          profile_setting.items_background|default_if_none: "#ffffff"
+        }
+      }
+
+      ;
+    }
+
     {% if profile_setting.body_img %}
-      background-image: url('{{ profile_setting.body_img.url }}');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
+    .body_img {
+        background-image: url('{{ profile_setting.body_img.url }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
     {% endif %}
-  }
-  </style> 
+
+  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
 
   {% if is_mobile %}
@@ -237,41 +287,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="{% static 'mobile/mdxbstyle.css' %}">
   <link rel="manifest" href="{% static 'mobile/manifest.json' %}">
   {% endif %}
-
 </head>
 
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K96MVJ7G"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8VNS7F5" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
   <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.getElementById("theme-toggle");
-    const body = document.body;
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById("theme-toggle");
+      const body = document.body;
 
-    // Load saved preference
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      body.classList.add("dark-mode");
-      toggle.checked = true;
-    }
-
-    toggle.addEventListener("change", function () {
-      if (this.checked) {
+      // Load saved preference
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
         body.classList.add("dark-mode");
-        localStorage.setItem("theme", "dark");
-      } else {
-        body.classList.remove("dark-mode");
-        localStorage.setItem("theme", "light");
+        toggle.checked = true;
       }
+
+      toggle.addEventListener("change", function () {
+        if (this.checked) {
+          body.classList.add("dark-mode");
+          localStorage.setItem("theme", "dark");
+        } else {
+          body.classList.remove("dark-mode");
+          localStorage.setItem("theme", "light");
+        }
+      });
     });
-  });
 
-  
-</script>
 
+  </script>
+
+</body>
+
+</html>

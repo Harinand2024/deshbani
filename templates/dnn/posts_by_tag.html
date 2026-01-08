@@ -7,7 +7,7 @@
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="article-card">
                 <div class="image-section">
-                    <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
+                    <a href="/{{ post.slug }}">
                         <img src="{{ post.post_image.url }}" alt="{{ post.post_title }}" title="{{ post.post_title }}"
                             loading="lazy" class="post-image" />
                     </a>
@@ -16,7 +16,7 @@
                             class="article-tag">
                             {{ post.post_cat|truncatechars:30 }}
                         </a>
-                        <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
+                        <a href="/{{ post.slug }}">
                             <h2 class="article-heading">{{ post.post_title|truncatechars:65 }}</h2>
                         </a>
 

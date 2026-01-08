@@ -11,7 +11,7 @@
     <div class="profile-info text-center">
       <img class="mx-2 rounded-circle profile-img"
         style="object-fit: cover; border: 2px solid #FFCC00 !important;"
-        src="{% if journalist.profile_picture %}{{ journalist.profile_picture.url }}{% else %}{% static 'assets/jpapp/img/user_random.jpg' %}{% endif %}"
+        src="{% if journalist.profile_picture %}{{ journalist.profile_picture.url }}{% else %}{% static 'assets/dnn/img/user_random.jpg' %}{% endif %}"
         alt="Journalist Profile">
       <div class="profile-text text-capitalize">
         <h5 class="name">{{ journalist.first_name }} {{ journalist.last_name }}</h5>
@@ -37,7 +37,6 @@
     <a class="sidebar-link" href="{% url 'news-post' %}"><i class="bi bi-newspaper"></i> News Post</a>
     <a class="sidebar-link" href="{% url 'manage-video-post' %}"><i class="fas fa-video"></i> Video Submission</a>
     <a class="sidebar-link" href="{% url 'video-post' %}"><i class="fas fa-plus-square"></i> Video Post</a>
-    <a class="sidebar-link" href="{% url 'news-data-post' %}"><i class="fas fa-upload"></i> News Data Upload</a>
     {% if journalist.registration_type != "journalist" %}
       <a class="sidebar-link" href="{% url 'gallery_post' %}"><i class="fas fa-images"></i> My Gallery</a>
     {% endif %}

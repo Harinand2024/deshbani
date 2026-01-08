@@ -8,7 +8,7 @@
   <meta name="distribution" content="global" />
   <meta name="twitter:site" content="@dxbnewsnetwork" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:domain" content="https://www.janhimachal.com/" />
+  <meta name="twitter:domain" content="https://www.dxbnewsnetwork.com/" />
   <meta property="fb:pages" content="173638345826971" />
   <meta property="og:site_name" content="Dxb News Network" />
   <meta property="og:locale" content="en" />
@@ -30,11 +30,11 @@
   <meta property="og:description" content="{{seo_details_page.post_short_des }} DXB News Network" />
   <meta property="twitter:description" content="{{seo_details_page.post_short_des }} DXB News Network" />
   <meta name="news_keywords" content="DXB News Network, breaking news, {% for tag in seo_details_page.tags.all %}{{tag.name}},{% endfor %}"/>
-  <meta property="og:url" content="https://www.janhimachal.com{{ request.path }}" />
-  <meta property="twitter:url" content="https://www.janhimachal.com{{ request.path }}" />
-  <meta property="og:image" content="https://www.janhimachal.com/upload/{{seo_details_page.post_image}}" />
-  <meta name="twitter:image" content="https://www.janhimachal.com/upload/{{seo_details_page.post_image}}" />
-  <link rel="canonical" href="https://www.janhimachal.com{{ request.path }}" />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta property="twitter:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/upload/{{seo_details_page.post_image}}" />
+  <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/upload/{{seo_details_page.post_image}}" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
 
 
   <script type="application/ld+json">
@@ -44,7 +44,7 @@
       "headline": "{{ blogdetails.post_title }}",
       "description": "{{ blogdetails.post_short_des }}",
       "image": [
-        "{% if blogdetails.post_image %}{{ request.scheme }}://{{ request.get_host }}{{ blogdetails.post_image.url }}{% else %}https://www.janhimachal.com/static/assets/img/default-news.jpg{% endif %}"
+        "{% if blogdetails.post_image %}{{ request.scheme }}://{{ request.get_host }}{{ blogdetails.post_image.url }}{% else %}https://www.dxbnewsnetwork.com/static/assets/img/default-news.jpg{% endif %}"
       ],
       "author": {
         "@type": "Person",
@@ -55,13 +55,13 @@
         "name": "DXB News Network",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://www.janhimachal.com/static/assets/img/logow.svg"
+          "url": "https://www.dxbnewsnetwork.com/static/assets/img/logow.svg"
         }
       },
 
       "datePublished": "{{ blogdetails.post_date }}",
       "dateModified": "{{ blogdetails.updated_at }}",
-      "mainEntityOfPage": "https://www.janhimachal.com{{ request.path }}",
+      "mainEntityOfPage": "https://www.dxbnewsnetwork.com{{ request.path }}",
       "inLanguage": "en",
       "articleBody": "{{ blogdetails.post_des|striptags }}"
     }
@@ -75,11 +75,11 @@
   <meta property="og:description" content="{{Vnews.video_short_des}}" />
   <meta property="twitter:description" content="{{Vnews.video_short_des}}" />
   <meta name="news_keywords" content="DXB News Network, breaking news, {{Vnews.video_title}}" />
-  <meta property="og:url" content="https://www.janhimachal.com{{ request.path }}" />
-  <meta name="twitter:url" content="https://www.janhimachal.com{{ request.path }}" />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
+  <meta name="twitter:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
   <meta property="og:image" content="https://img.youtube.com/vi/{{Vnews.video_url}}/mqdefault.jpg" />
   <meta name="twitter:image" content="https://img.youtube.com/vi/{{Vnews.video_url}}/mqdefault.jpg" />
-  <link rel="canonical" href="https://www.janhimachal.com{{ request.path }}" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
   {% elif indseo == 'voicesofuae' %}
   <title>inspiring achievements of individuals from diverse fields and backgrounds in the UAE</title>
   <meta property="og:title" content="inspiring achievements of individuals from diverse fields and backgrounds in the UAE" />
@@ -88,11 +88,11 @@
   <meta property="og:description" content="Celebrating Achievers Across Fields The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE." />
   <meta property="twitter:description" content="Celebrating Achievers Across Fields The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE." />
   <meta name="news_keywords" content="Celebrating Achievers Across Fields The campaign aims to highlight and celebrate the inspiring achievements of individuals from diverse fields and backgrounds in the UAE." />
-  <meta property="og:url" content="https://www.janhimachal.com{{ request.path }}" />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
   <meta name="twitter:url" content="https://twitter.com/dxbnewsnetwork" />
-  <meta property="og:image" content="https://www.janhimachal.com/static/assets/img/voice-of-uae-og.jpg" />
-  <meta name="twitter:image" content="https://www.janhimachal.com/static/assets/img/voice-of-uae-og.jpg" />
-  <link rel="canonical" href="https://www.janhimachal.com{{ request.path }}" />
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/static/assets/img/voice-of-uae-og.jpg" />
+  <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/static/assets/img/voice-of-uae-og.jpg" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
 
   {% elif indseo %}
   <title>{{ indseo.metatitle }}</title>
@@ -102,7 +102,7 @@
   <meta name="twitter:title" content="{{ indseo.metatitle }}">
   <meta name="twitter:description" content="{{ indseo.metadescription }}">
   <meta name="news_keywords" content="{{ indseo.metatitle }}">
-  <meta property="og:image" content="https://www.janhimachal.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg">
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg">
 
   {% else %}
   <title>{{indseo.metatitle}}</title>
@@ -112,11 +112,11 @@
   <meta property="og:description" content="{{indseo.metadescription}}" />
   <meta property="twitter:description" content="{{indseo.metadescription}}" />
   <meta name="news_keywords" content="{{indseo.metakeyword}}" />
-  <meta property="og:url" content="https://www.janhimachal.com{{ request.path }}" />
+  <meta property="og:url" content="https://www.dxbnewsnetwork.com{{ request.path }}" />
   <meta name="twitter:url" content="https://twitter.com/dxbnewsnetwork" />
-  <meta property="og:image" content="https://www.janhimachal.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg" />
-  <meta name="twitter:image" content="https://www.janhimachal.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg" />
-  <link rel="canonical" href="https://www.janhimachal.com{{ request.path }}" />
+  <meta property="og:image" content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg" />
+  <meta name="twitter:image" content="https://www.dxbnewsnetwork.com/static/assets/img/dubai-best-news-channel-dxbnewsnetwork.jpg" />
+  <link rel="canonical" href="https://www.dxbnewsnetwork.com{{ request.path }}" />
   {% endif %}
 
   {% if request.user.id %}
@@ -163,8 +163,8 @@
     "@type": "NewsMediaOrganization",
     "name": "DXB News Network",
     "alternateName": "DNN",
-    "url": "https://www.janhimachal.com/",
-    "logo": "https://www.janhimachal.com/static/assets/img/logo.svg",
+    "url": "https://www.dxbnewsnetwork.com/",
+    "logo": "https://www.dxbnewsnetwork.com/static/assets/img/logo.svg",
     "contactPoint": [{
       "@type": "ContactPoint",
       "telephone": "+971 564503476",
@@ -189,10 +189,10 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "DXB News Network",
-    "url": "https://www.janhimachal.com/",
+    "url": "https://www.dxbnewsnetwork.com/",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.janhimachal.com/search?q={search_term_string}",
+      "target": "https://www.dxbnewsnetwork.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }

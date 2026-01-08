@@ -1,102 +1,257 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load static %}
-<!-- Contact Start -->
-<div class="dxb-container">
-    <div class="section-title mb-0 mt-3">
-        <h1 class="m-0 text-uppercase font-weight-bold text-center pb-5 ">Contact Us For Any Queries</h1>
+
+<style>
+/* -----------------------------
+   GENERAL PAGE / SECTION
+------------------------------ */
+.contact-section {
+    padding: 40px 15px;
+}
+
+.section-title h3 {
+    border-left: 4px solid #e51b17;
+    padding-left: 10px;
+}
+
+/* -----------------------------
+   LEFT CONTENT AREA
+------------------------------ */
+.contact-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.contact-content h4 {
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+.contact-content p,
+.contact-content li {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* -----------------------------
+   CONTACT FORM
+------------------------------ */
+.contact-form {
+    margin-top: 30px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.contact-form input,
+.contact-form textarea {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.contact-form button {
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 12px;
+    background: #e51b17;
+    border-color: #e51b17;
+}
+
+/* -----------------------------
+   RIGHT COLUMN
+------------------------------ */
+.right-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.right-box h4 {
+    border-left: 4px solid #e51b17;
+    padding-left: 10px;
+}
+
+.ad-box-right img {
+    border-radius: 10px;
+}
+
+/* MAP */
+.custom-map-wrapper iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+</style>
+
+
+<!-- PAGE WRAPPER -->
+<div class="container contact-section">
+
+    <div class="section-title mb-4">
+        <h3 class="m-0 text-uppercase font-weight-bold py-3 border-bottom">
+            Contact Us For Any Queries
+        </h3>
     </div>
-    <div class="row p-4 mb-5">
-        <div class="col-lg-8 col-md-6 col-sm-12 p-4">
-            <div class="mb-4">
-                <h4 class="text-uppercase font-weight-bold mb-4">Contact Info</h4>
-                <p class="mb-4 text-justify">We believe in the power of news to connect and empower people. DNN aspires
-                    to be more than just a news outlet, we aim to be a community hub where diverse perspectives are
-                    welcomed and constructive conversations are fostered. </p>
+
+    <div class="row">
+
+        <!-- LEFT SIDE FULL CONTENT -->
+        <div class="col-lg-8 col-md-6 col-sm-12">
+
+            <div class="contact-content">
+
+                <!-- ⭐ FULL CONTENT (UNCHANGED) ⭐ -->
+                
+                <p class="mb-4 text-justify">
+                    We are always happy to hear from our readers, contributors, partners and agencies. Whether you want to share a news tip from your locality, explore collaboration with DXB News Network and its alliances, or simply have feedback about our coverage, you can reach us through the channels below.
+                </p>
+
+                <h4 class="font-weight-bold mb-1">General & Official Communication</h4>
+                <p class="m-0 text-justify">
+                    For all general enquiries, company information, legal / privacy queries, billing or official documentation:
+                </p>
+                <h6>Email: info@markaziasolutions.com</h6>
+
                 <div class="mb-3">
-                    <div class="d-flex align-items-center mb-2">
-                        <i class="fa fa-map-marker-alt  mr-2"></i>
-                        <h6 class="font-weight-bold mb-0">Our Office</h6>
-                    </div>
-                    {% if profile_setting.main_office_address %}
-                    <a href="https://www.google.com/maps/search/?api=1&query={{ profile_setting.main_office_address|urlencode }}"
-                        target="_blank">
-                        {{ profile_setting.main_office_address }}
+                    <h4 class="font-weight-bold mb-1">DXB India News – A Markazia Solution Initiative</h4>
+                    <p class="mb-4 text-justify">
+                        Head Office: 227/1, Acme Heights Ext-2, Sector 117, Mohali, Punjab, India
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <h4 class="font-weight-bold mb-0">News, Queries & Collaborations</h4>
+                    <p class="m-0">
+                        For <strong>tips, story ideas, press releases, community journalism, regional reports, brand collaborations and agency discussions</strong> (including DXB News Network alliances and INA-related collaborations):
+                    </p>
+                    <a class="fw-bold" href="mailto:{{ profile_setting.email }}">
+                        {{ profile_setting.email }}
                     </a>
-                    {% endif %}
+
+                    <h6 class="pt-2">This address should also be used for:</h6>
+                    <ul>
+                        <li>Newsroom & editorial communication</li>
+                        <li>Community journalism & contributor support</li>
+                        <li>Business partnerships, media alliances, agencies & brand integrations</li>
+                    </ul>
+
+                    <h4 class="font-weight-bold mb-1">Technical Support & Security</h4>
+                    <p>For any technical issue, access problem, or security-related concern, you may write to:</p>
+                    <p>● Email: info@markaziasolutions.com</p>
+
+                    <h4 class="font-weight-bold mb-1">Office Hours</h4>
+                    <p>● Monday to Saturday: 10:00 AM – 6:00 PM (IST)</p>
+                    <p>● Sunday & Public Holidays: Newsroom works on duty basis; non-urgent queries are answered next working day.</p>
+
+                    <p class="py-3 border-bottom">
+                        Our team, led by Founder & CEO – Aaryan A Singh, aims to respond as promptly as possible, with priority to critical news, public-interest issues and key partner communication.
+                    </p>
+
+                    <h4 class="font-weight-bold mb-1">How to Apply These Emails in Other Pages</h4>
+                    <p class="m-0">Wherever in the previously drafted pages you show or imply contact by email:</p>
+
+                    <h6 class="font-weight-bold my-2">Use info@markaziasolutions.com for:</h6>
+                    <ul>
+                        <li>Privacy Policy contact section</li>
+                        <li>Terms & Conditions contact section</li>
+                        <li>Disclaimer contact section</li>
+                        <li>Any “official communication / legal / company / policy” queries</li>
+                    </ul>
+
+                    <h6 class="font-weight-bold my-2">Use connect@dxbindia.com for:</h6>
+                    <ul>
+                        <li>News / editorial / story submission / community journalism</li>
+                        <li>Collaboration, alliances, agency queries, brand deals</li>
+                        <li>“For news or collaboration, write to…” type lines</li>
+                    </ul>
                 </div>
+
                 <div class="mb-3">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fa fa-envelope-open  mr-2"></i>
-                        <h6 class="font-weight-bold mb-0">Email Us</h6>
-                    </div>
-                    <a href="mailto:{{ profile_setting.email }}">{{ profile_setting.email }}</a>
-                </div>
-                <div class="mb-3">
-                    <div class="d-flex align-items-center mb-2">
-                        <i class="fa fa-phone-alt  mr-2"></i>
+                        <i class="fa fa-phone-alt mr-2"></i>
                         <h6 class="font-weight-bold mb-0">Call Us</h6>
                     </div>
-                    <a href="tel:{{ profile_setting.phone_number1 }}">{{ profile_setting.phone_number1 }}</a>
+                    <a href="tel:{{ profile_setting.phone_number1 }}">
+                        {{ profile_setting.phone_number1 }}
+                    </a>
                 </div>
+
+                <!-- Contact Form -->
+                <h4 class="text-uppercase font-weight-bold mt-4 mb-3">Contact Us</h4>
+
+                <form class="contact-form">
+
+                    <div class="form-row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control p-3" placeholder="Your Name" required />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <input type="email" class="form-control p-3" placeholder="Your Email" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control p-3" placeholder="Subject" required />
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control p-3" rows="4" placeholder="Message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary font-weight-bold">
+                        Send Message
+                    </button>
+
+                </form>
+
             </div>
-            <h4 class="text-uppercase font-weight-bold mb-4">Contact Us</h4>
-            <form>
-                <div class="form-row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <input type="text" class="form-control p-4" placeholder="Your Name" required="required" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <input type="email" class="form-control p-4" placeholder="Your Email" required="required" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control p-4" placeholder="Subject" required="required" />
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" rows="4" placeholder="Message" required="required"></textarea>
-                </div>
-                <div>
-                    <button class="btn btn-primary font-weight-semi-bold px-4"
-                        style="height: 50px; height: 50px;background: #478fc9;border-color: #478fc9;" type="submit">Send
-                        Message</button>
-                </div>
-            </form>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 p-4">
 
-            <div class="pb-4 text-center">
-                <h4 class="m-0 text-uppercase font-weight-bold"><i class="fa fa-map-marker-alt  mr-2"></i> Location</h4>
-            </div>
-            <div class="custom-map-wrapper">
-                {% if profile_setting.google_map %}
-                {{ profile_setting.google_map|safe }}
-                {% else %}
-                <p>Map is not available.</p>
-                {% endif %}
-            </div>
 
-            <div class="mt-3">
-                <div class="text-center border border-top-0">
+        <!-- RIGHT COLUMN -->
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mt-md-0">
+
+            <div class="right-box text-center">
+                <h4 class="m-0 text-uppercase font-weight-bold mb-3">
+                    <i class="fa fa-map-marker-alt mr-2"></i> Location
+                </h4>
+
+                <div class="custom-map-wrapper">
+                    {% if profile_setting.google_map %}
+                        {{ profile_setting.google_map|safe }}
+                    {% else %}
+                        <p>Map is not available.</p>
+                    {% endif %}
+                </div>
+
+                <div class="ad-box-right mt-4">
                     {% for adrcol in adright %}
-                    <a href="{{adrcol.ad_url}}" target="_blank"><img class="img-fluid w-100"
-                            src="../upload/{{adrcol.ad_image}}" alt="{{adrcol.ad_url}}"></a>
+                    <a href="{{ adrcol.ad_url }}" target="_blank">
+                        <img class="img-fluid w-100 mb-3"
+                             src="../upload/{{ adrcol.ad_image }}"
+                             alt="{{ adrcol.ad_url }}">
+                    </a>
                     {% endfor %}
-
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
-<style>
-    .custom-map-wrapper iframe {
-        width: 100%;
-        height: 300px;
-        border: 0;
-    }
-</style>
+
 {% endblock %}

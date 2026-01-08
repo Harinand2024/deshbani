@@ -1,18 +1,42 @@
+
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
 
-<div class="m-auto">
-   <h1 class="text-title h4 text-center mt-3 mb-3">Jan Himachal – Latest Himachal Pradesh News, HP Breaking Updates & District-Wise Headlines</h1>
-    {% include 'topbignews.html' %}
+<div class="container">
+  
     <!-- top news end -->
    
     {% include 'topnews.html' %}
     <!-- top news end -->
+     {% include 'articale.html' %}
+    <!-- news tabs start -->
+    {% include 'news_tabs.html' %}
+    <!-- news tabs end -->
     
-    <!-- news2 (from third category) start -->
-    {% include 'news2.html' %}
-    <!-- news2 end -->
-    
+      
+
+    <!-- <div class="row my-2">
+        <div class="col-lg-6 col-md-12">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
+            crossorigin="anonymous"></script>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5922835412614482" data-ad-slot="2979021120"
+            data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5922835412614482"
+            crossorigin="anonymous"></script>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5922835412614482" data-ad-slot="2979021120"
+            data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+    </div> -->
+
 </div>
 {% endblock %}

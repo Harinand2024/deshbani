@@ -1,161 +1,180 @@
 {% load static %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 
 <style>
+/* 🎬 Container */
 .popular-video {
-    max-width: 420px;
+  width: 100%;
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-/* Main video */
+
+/* 🎥 Main video */
 .popular-video .main-video {
-    position: relative;
-    margin-bottom: 10px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
 }
-.popular-video .main-video img {
-    width: 100%;
-    display: block;
-    border-radius: 4px;
+.popular-video .main-video iframe {
+  width: 100%;
+  height: 210px;
+  border: none;
+  border-radius: 10px;
 }
-.popular-video .main-video .play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 30px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 14px 23px;
-    cursor: pointer;
-    width: 80px;
-    height: 80px;
-}
-/* Thumbnails slider */
+
+/* 🎞 Thumbnail slider */
 .swiper {
-    width: 100%;
+  width: 100%;
+}
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
 }
 .custom-slide {
-    position: relative;
-    width: 100px !important;
-    height: 100px !important;
-    margin: 0 5px !important;
-    cursor: pointer;
+  position: relative;
+  width: 105px !important;
+  height: 70px !important;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+.custom-slide:hover {
+  transform: scale(1.05);
 }
 .custom-slide img {
-    width: 100%;
-    border-radius: 4px;
-    display: block;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
 }
 .custom-slide .play-btn {
-    position: absolute;
-    top: 35%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    font-size: 16px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 48%;
-    padding: 5px 9px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 6px 8px;
 }
 </style>
 
 <div class="popular-video">
-    <!-- Main Video -->
-    <div class="main-video" id="mainVideoContainer">
-        {% if videos %}
-       
 
-        <iframe width="100%" height="250" src="https://www.youtube.com/embed/{{ videos.0.video_url }}" title="{{ videos.0.video_title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <!-- 🎬 Main Video -->
+  <div class="main-video" id="mainVideoContainer">
+    {% if videos %}
+      {% with vid=videos.0.video_url %}
+        {% if "watch?v=" in vid %}
+          {% with vid_id=vid|cut:"https://www.youtube.com/watch?v=" %}
+            <iframe
+              id="mainVideo"
+              src="https://www.youtube.com/embed/{{ vid_id }}?autoplay=0&mute=0&rel=0&origin={{ request.scheme }}://{{ request.get_host }}"
+              title="{{ videos.0.video_title }}"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          {% endwith %}
+        {% else %}
+          <iframe
+            id="mainVideo"
+            src="https://www.youtube.com/embed/{{ vid }}?autoplay=0&mute=0&rel=0&origin={{ request.scheme }}://{{ request.get_host }}"
+            title="{{ videos.0.video_title }}"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
         {% endif %}
-    </div>
+      {% endwith %}
+    {% endif %}
+  </div>
 
-    <!-- Thumbnail Slider -->
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            {% for CatVid in videos %}
+  <!-- 🎞 Thumbnail Slider -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {% for CatVid in videos %}
+        {% if "watch?v=" in CatVid.video_url %}
+          {% with vid_id=CatVid.video_url|cut:"https://www.youtube.com/watch?v=" %}
             <div class="swiper-slide custom-slide">
-                <a href="/video/{{CatVid.slug}}" 
-                   class="thumb-video" 
-                   data-video="{{ CatVid.video_url }}" 
-                   data-title="{{ CatVid.video_title }}">
-                    <img src="https://img.youtube.com/vi/{{ CatVid.video_url }}/hqdefault.jpg"
-                         alt="{{ CatVid.video_title }}"
-                         title="{{ CatVid.video_title }}"
-                         loading="lazy">
-                    <div class="play-btn">&#9658;</div>
-                </a>
+              <a href="javascript:void(0);"
+                 class="thumb-video"
+                 data-video="{{ vid_id }}"
+                 data-title="{{ CatVid.video_title }}">
+                <img src="https://img.youtube.com/vi/{{ vid_id }}/hqdefault.jpg"
+                     alt="{{ CatVid.video_title }}">
+                <div class="play-btn">▶</div>
+              </a>
             </div>
-            {% endfor %}
-        </div>
+          {% endwith %}
+        {% else %}
+          <div class="swiper-slide custom-slide">
+            <a href="javascript:void(0);"
+               class="thumb-video"
+               data-video="{{ CatVid.video_url }}"
+               data-title="{{ CatVid.video_title }}">
+              <img src="https://img.youtube.com/vi/{{ CatVid.video_url }}/hqdefault.jpg"
+                   alt="{{ CatVid.video_title }}">
+              <div class="play-btn">▶</div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
+  </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<!-- <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // 1) Swiper setup with autoplay
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 3,
-      spaceBetween: 5,
-      loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false
-      },
-      slideToClickedSlide: true,
-      watchSlidesProgress: true,
-      on: {
-        // 2) Click on any slide (including loop clones)
-        click: function (sw, event) {
-          const slideEl = sw.clickedSlide;
-          if (!slideEl) return;
 
-          const anchor = slideEl.querySelector(".thumb-video");
-          if (!anchor) return;
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-          event && event.preventDefault();
-          changeMainVideo(anchor.dataset.video, anchor.dataset.title);
-        }
-      }
-    });
-
-    // Helper: escape title
-    function esc(s) {
-      return String(s).replace(/[&<>"']/g, c => ({
-        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-      }[c]));
-    }
-
-    // 3) Update main video iframe
-    function changeMainVideo(videoId, videoTitle) {
-      const container = document.getElementById("mainVideoContainer");
-      if (!container) return;
-
-      container.innerHTML = `
-        <iframe
-          width="100%"
-          height="250"
-          src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0"
-          title="${esc(videoTitle)}"
-          frameborder="0"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      `;
-    }
-
-    // 4) Fallback: if someone clicks directly on the inner elements
-    document.addEventListener("click", function (e) {
-      const el = e.target.closest(".thumb-video");
-      if (!el) return;
-      e.preventDefault();
-      changeMainVideo(el.dataset.video, el.dataset.title);
-    });
+  // ✅ Swiper initialization
+  new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 8,
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    grabCursor: true,
   });
-</script> -->
 
+  // ✅ Function to change main video
+  function changeMainVideo(videoId, videoTitle) {
+    const container = document.getElementById("mainVideoContainer");
+    if (!container || !videoId) return;
 
+    container.innerHTML = `
+      <iframe
+        width="100%"
+        height="210"
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&origin=${window.location.origin}"
+        title="${videoTitle}"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy">
+      </iframe>`;
+  }
 
+  // ✅ Handle thumbnail clicks
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest(".thumb-video");
+    if (!el) return;
+    e.preventDefault();
+    changeMainVideo(el.dataset.video, el.dataset.title);
+  });
+
+});
+</script>

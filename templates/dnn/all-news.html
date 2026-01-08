@@ -12,7 +12,7 @@
             {% comment %} ------video-podcast-news-start------- {% endcomment %}
             {% if vidnews != null %}
             <div class="mx-2">
-                <div class="section-title">ख़बरें और पॉडकास्ट</div>
+                <div class="section-title">News and Podcasts</div>
                 <div class="double-underline"></div>
             </div>
             {% endif %}
@@ -31,7 +31,7 @@
                                         <i class="fa fa-play-circle"></i>
                                     </span>
                                 </a>
-                                <div class="p-3 card-background">                                    
+                                <div class="p-3 card-bg-dark">                                    
                                     <p>
                                     <small><i class="fas fa-calendar-alt"></i> {{vidpost.schedule_date|date}}</small>
                                     <small class="ml-3"> <i class="fas fa-clock"></i> {{ vidpost.schedule_date|time }}</small>
@@ -49,15 +49,15 @@
                         {% endfor %}
                         {% for Blog in BlogData %}
                         <div class="col-lg-4 colo-md-6 colo-sm-12 mt-4">
-                            <a href="/{{Blog.newsfrom.slug}}/{{Blog.post_cat.sub_cat.cat_slug}}/{{Blog.slug}}">
+                            <a href="/{{Blog.slug}}">
                                  <img class="" src="../upload/{{Blog.post_image}}" alt="">
                             </a>
-                            <div class="news-card mb-3">
+                            <div class="card-bg-dark mb-3">
                                 
-                                <a class="news-title" href="/{{Blog.newsfrom.slug}}/{{Blog.post_cat.sub_cat.cat_slug}}/{{Blog.slug}}">
+                                <a class="news-title" href="/{{Blog.slug}}">
                                     <p>{{Blog.post_title|slice:":60"|safe}}</p>
                                 </a>
-                                <a href="/{{Blog.newsfrom.slug}}/{{Blog.post_cat.sub_cat.cat_slug}}/{{Blog.slug}}" class="news-description">
+                                <a href="/{{Blog.slug}}" class="news-description">
                                     <p>{{Blog.post_short_des|slice:":100"|safe}}</p>
                                 </a>
 

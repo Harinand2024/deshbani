@@ -1,0 +1,65 @@
+{% load static %}
+<style>
+  .ad-box {
+    background: var(--bs-dark);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ad-box p {
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.6;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .ad-box .ad-placeholder {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e9e9e9 25%, #d5d5d5 25%, #d5d5d5 50%, #e9e9e9 50%, #e9e9e9 75%, #d5d5d5 75%, #d5d5d5);
+    background-size: 40px 40px;
+    animation: move 2s linear infinite;
+  }
+
+  @keyframes move {
+    from { background-position: 0 0; }
+    to { background-position: 40px 40px; }
+  }
+
+  .ad-box img {
+    width: 100%;
+    border-radius: 8px;
+  }
+</style>
+
+<div class="ad-box my-3">
+  <p>ADVERTISEMENT</p>
+  <!-- IMAGE AD -->
+ 
+  <a class="my-3" href="https://markaziasolutions.com/contact" target="_blank">
+    <img id="adImage" src="https://scontent.fixc1-5.fna.fbcdn.net/v/t39.30808-6/571330549_744625311964970_8732516182677982660_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2xaRXSOoQDQQ7kNvwF9YEcT&_nc_oc=AdnFlhJzcmc6QY87NZg02V5irRqcSvggVpknvXVQ8_qBkoEZPWhoAv8vC0d68HwO6TcdxbghiIUiophw_dRTTmxq&_nc_zt=23&_nc_ht=scontent.fixc1-5.fna&_nc_gid=-JnUIE2ebh0hrsDzN45fMA&oh=00_AfgAtU6fhYaGKqIF6hf-D3p62fh7IK2xW8lIb5ISx4B1Ig&oe=69209F8D" alt="Ad">
+  </a>
+  
+</div>
+
+<script>
+  const adImage = document.getElementById("adImage");
+  const placeholder = document.getElementById("adPlaceholder");
+
+  // when image loads successfully
+  adImage.onload = function () {
+    placeholder.style.display = "none";
+  };
+
+  // if image fails to load
+  adImage.onerror = function () {
+    adImage.style.display = "none";
+    placeholder.style.display = "block";
+  };
+</script>
