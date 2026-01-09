@@ -28,7 +28,7 @@
           </h5>
           <div class="d-flex flex-column gap-2">
             {% for article in headline|slice:":5" %}
-              <a href="/{{ article.slug }}" class="footer-link d-block fw-semibold">
+              <a href="{{ article.newsfrom.slug }}/{{ article.post_cat.sub_cat.cat_slug }}/{{ article.slug }}" class="footer-link d-block fw-semibold">
                 {{ article.post_title|truncatechars:55 }}
               </a>
             {% empty %}
@@ -45,7 +45,7 @@
         </h5>
         {% for news in LatestNews|slice:":3" %}
         <div class="mb-3">
-          <a href="/{{ news.slug }}" class="text-white text-decoration-none fw-semibold d-block mb-1 footer-news-link">
+          <a href="/{{ news.newsfrom.slug }}/{{ news.post_cat.sub_cat.cat_slug }}/{{ news.slug }}" class="text-white text-decoration-none fw-semibold d-block mb-1 footer-news-link">
             {{ news.post_title|truncatechars:65 }}
           </a>
           <div class="small opacity-75">
@@ -55,6 +55,7 @@
         </div>
         {% endfor %}
       </div>
+
 
       <!-- 🟦 Useful Links -->
       <div class="col-lg-3 col-md-6">

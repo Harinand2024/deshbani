@@ -1,5 +1,17 @@
 {% load static %}
-<div class="container my-3">
+<div class="container mb-3">
+ <div class="trending-strip mb-2">
+    <span class="trending-label">TRENDING</span>
+
+    {% for Blog in trendpost|slice:"0:9" %}
+      <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}"
+        class="trend-pill {% if forloop.first %}active{% endif %}">
+        {{ Blog.post_title|truncatechars:22 }}
+      </a>
+    {% endfor %}
+  </div>
+
+
   <div class="row">
     <!-- ================= LEFT SECTION (col-9): News Content ================= -->
     <div class="col-lg-9 col-md-12">
@@ -7,58 +19,64 @@
       <!-- 🌐 Slider + Two Ads Row -->
       <div class="row mb-4">
         <!-- 📰 Slider -->
-        <div class="col-lg-6 col-md-12 ">
-          <section class="dxbindia-slider">
-            <div id="dxbindiaNewsCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="col-lg-6 col-md-12">
+            <section class="dxbindia-slider">
+              <div id="dxbindiaNewsCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 
-              <!-- Indicators -->
-              <div class="carousel-indicators">
-                {% for news in LatestNews %}
-                <button type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
-                  class="{% if forloop.first %}active{% endif %}"></button>
-                {% endfor %}
-              </div>
-
-              <!-- Slides -->
-              <div class="carousel-inner rounded-4 overflow-hidden card-bg-dark shadow-sm">
-                {% for news in LatestNews %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                  <div class="ratio ratio-16x9">
-                    {% if news.video_file %}
-                    <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
-                      <source src="{{ news.video_file.url }}" type="video/mp4">
-                    </video>
-                    {% else %}
-                    <a href="/{{ news.slug }}">
-                      <img src="{{ news.post_image.url }}" alt="{{ news.post_title }}" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy">
-                    </a>
-                    {% endif %}
-                  </div>
-                  <div class="dxbindia-slide-overlay d-flex flex-column justify-content-end p-4">
-                    <div class="d-flex align-items-center mb-2">
-                      <span class="badge bg-danger me-2">Latest</span>
-                      <span class="text-light small">{{ news.post_date }}</span>
-                    </div>
-                    <h5 class="text-white fw-semibold mb-4 text-truncate-2">
-                      <a href="/{{ news.slug }}" class="text-white text-decoration-none">
-                        {{ news.post_title|truncatechars:180 }}
-                      </a>
-                    </h5>
-                  </div>
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                  {% for news in LatestNews %}
+                  <button type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}"></button>
+                  {% endfor %}
                 </div>
-                {% endfor %}
-              </div>
 
-              <!-- Controls -->
-              <button class="carousel-control-prev" type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
-              </button>
-            </div>
-          </section>
-        </div>
+                <!-- Slides -->
+                <div class="carousel-inner rounded-4 overflow-hidden card-bg-dark shadow-sm">
+                  {% for news in LatestNews %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="ratio ratio-16x9">
+                      {% if news.video_file %}
+                        <a href="/{{ news.newsfrom.slug }}/{{ news.post_cat.sub_cat.cat_slug }}/{{ news.slug }}">
+                          <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
+                            <source src="{{ news.video_file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </a>
+                      {% else %}
+                        <a href="/{{ news.newsfrom.slug }}/{{ news.post_cat.sub_cat.cat_slug }}/{{ news.slug }}">
+                          <img src="{{ news.post_image.url }}" alt="{{ news.post_title }}" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy">
+                        </a>
+                      {% endif %}
+                    </div>
+
+                    <div class="dxbindia-slide-overlay d-flex flex-column justify-content-end p-4">
+                      <div class="d-flex align-items-center mb-2">
+                        <span class="badge bg-danger me-2">Latest</span>
+                        <span class="text-light small">{{ news.post_date }}</span>
+                      </div>
+                      <h5 class="text-white fw-semibold mb-4 text-truncate-2">
+                        <a href="/{{ news.newsfrom.slug }}/{{ news.post_cat.sub_cat.cat_slug }}/{{ news.slug }}" class="text-white text-decoration-none">
+                          {{ news.post_title|truncatechars:180 }}
+                        </a>
+                      </h5>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+                </button>
+
+              </div>
+            </section>
+          </div>
+
 
        <!-- 📰 2 Latest News Beside Slider -->
         <div class="col-lg-6 col-md-12">
@@ -68,11 +86,11 @@
             <div class="col-md-6">
               {% for Blog in LatestNews|slice:"0:1" %}
               <div class="card-bg-dark shadow-sm border rounded h-100">
-                <a href="/{{ Blog.slug }}">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
                 <div class="py-3 px-2">
-                  <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:60 }}</div>
                   </a>
                   <div class="small mt-2 d-flex align-items-center">
@@ -90,11 +108,11 @@
             <div class="col-md-6">
               {% for Blog in LatestNews|slice:"1:2" %}
               <div class="card-bg-dark shadow-sm border rounded h-100">
-                <a href="/{{ Blog.slug }}">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
                 <div class="py-3 px-2">
-                  <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:60 }}</div>
                   </a>
                   <div class="small mt-2 d-flex align-items-center">
@@ -124,11 +142,11 @@
             <div class="p-2">
               {% for Blog in trendpost|slice:"0:3" %}
               <div class="d-flex align-items-center mb-3 story-item">
-                <a href="/{{ Blog.slug }}" class="me-2">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded story-img" loading="lazy">
                 </a>
                 <div class="flex-grow-1">
-                  <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold hover-title">{{ Blog.post_title|truncatechars:40 }}</div>
                   </a>
                   <div class=" small mt-1 d-flex align-items-center">
@@ -151,11 +169,11 @@
             <div class="col-md-6">
               {% for Blog in trendpost|slice:"3:4" %}
               <div class="card-bg-dark shadow-sm border rounded h-100">
-                <a href="/{{ Blog.slug }}">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
                  <div class="py-3 px-2">
-                  <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                   </a>
                   <div class="small mt-2 d-flex align-items-center">
@@ -174,11 +192,11 @@
             <div class="col-md-6">
               {% for Blog in trendpost|slice:"4:5" %}
               <div class="card-bg-dark shadow-sm border rounded h-100">
-                <a href="/{{ Blog.slug }}">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
                 <div class="py-3 px-2">
-                  <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                   </a>
                   <div class="small mt-2 d-flex align-items-center">
@@ -208,11 +226,11 @@
               <div class="p-2">
                 {% for Blog in bnews|slice:"0:3" %}
                 <div class="d-flex align-items-center mb-3 story-item">
-                  <a href="/{{ Blog.slug }}" class="me-2">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded story-img" loading="lazy">
                   </a>
                   <div class="flex-grow-1">
-                    <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                    <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                       <div class="fw-semibold hover-title">{{ Blog.post_title|truncatechars:40 }}</div>
                     </a>
                     <div class="small mt-1 d-flex align-items-center">
@@ -235,11 +253,11 @@
               <div class="col-md-6">
                 {% for Blog in bnews|slice:"3:4" %}
                 <div class="card-bg-dark shadow-sm border rounded h-100">
-                  <a href="/{{ Blog.slug }}">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                   </a>
                   <div class="py-3 px-2">
-                    <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                    <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                       <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                     </a>
                     <div class="small mt-2 d-flex align-items-center">
@@ -257,11 +275,11 @@
               <div class="col-md-6">
                 {% for Blog in bnews|slice:"4:5" %}
                 <div class="card-bg-dark shadow-sm border rounded h-100">
-                  <a href="/{{ Blog.slug }}">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                   </a>
                   <div class="py-3 px-2">
-                    <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                    <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                       <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                     </a>
                     <div class="small mt-2 d-flex align-items-center">
@@ -293,11 +311,11 @@
             <div class="p-2">
               {% for Blog in headline|slice:"0:3" %}
               <div class="d-flex align-items-center mb-3 story-item">
-                <a href="/{{ Blog.slug }}" class="me-2">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded story-img" loading="lazy">
                 </a>
                 <div class="flex-grow-1">
-                  <a href="/{{ Blog.slug }}" class="text-decoration-none">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold hover-title">{{ Blog.post_title|truncatechars:40 }}</div>
                   </a>
                   <div class=" small mt-1 d-flex align-items-center">
@@ -561,6 +579,48 @@
     color: #ed1c24 !important;
   }
 
+.trending-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.trending-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.trending-label {
+  color: red;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.trend-pill {
+  font-size: 12px;
+  padding: 5px 10px;
+  background: #f2f2f2;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.trend-pill:hover {
+  background: #e5e5e5;
+   text-decoration: none;
+}
+
+.trend-pill.active {
+  background: #e60000;
+  color: #fff !important;
+  text-decoration: none;
+}
 
   @media (max-width: 768px) {
     .dxbindia-slide-overlay {

@@ -8,7 +8,7 @@
       <div class="tabs-wrapper border-bottom mb-3 pb-2 text-center">
         <ul class="nav slick-tabs justify-content-start flex-wrap" id="categoryTab" role="tablist">
           {% for category, subcat_data in grouped_postsdata2.items %}
-          <li class="" role="presentation">
+          <li role="presentation">
             <button
               class="nav-link {% if forloop.first %}active{% endif %}"
               id="tab-{{ category.cat_slug }}"
@@ -38,12 +38,12 @@
                   {% with posts.0 as post %}
                   <div class="col-lg-6 col-md-12">
                     <div class="news-card big-card ">
-                      <a href="/{{ post.slug }}">
+                      <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
                         <img src="{{ post.post_image.url }}" alt="{{ post.post_title }}" class="img-fluid rounded-3 w-100" loading="lazy">
                       </a>
                       <div class="pt-2">
                         <h5 class="fw-bold mb-2 lh-sm">
-                          <a href="/{{ post.slug }}" class=" text-decoration-none hover-red">
+                          <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}" class=" text-decoration-none hover-red">
                             {{ post.post_title|truncatechars:120 }}
                           </a>
                         </h5>
@@ -64,11 +64,11 @@
                       {% for post in posts|slice:"1:5" %}
                       <div class="col-6">
                         <div class="news-card mini-card ">
-                          <a href="/{{ post.slug }}">
+                          <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
                             <img src="{{ post.post_image.url }}" alt="{{ post.post_title }}" class="img-fluid rounded-3 mb-2" loading="lazy">
                           </a>
                           <h6 class="fw-semibold mb-1 lh-sm">
-                            <a href="/{{ post.slug }}" class=" text-decoration-none hover-red">
+                            <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}" class=" text-decoration-none hover-red">
                               {{ post.post_title|truncatechars:70 }}
                             </a>
                           </h6>
@@ -84,11 +84,11 @@
                   {% for post in posts %}
                   <div class="col-lg-4 col-md-6">
                     <div class="news-card ">
-                      <a href="/{{ post.slug }}">
+                      <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
                         <img src="{{ post.post_image.url }}" alt="{{ post.post_title }}" class="img-fluid rounded-3 mb-2" loading="lazy">
                       </a>
                       <h6 class="fw-semibold mb-1 lh-sm">
-                        <a href="/{{ post.slug }}" class=" text-decoration-none hover-red">
+                        <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}" class=" text-decoration-none hover-red">
                           {{ post.post_title|truncatechars:80 }}
                         </a>
                       </h6>
@@ -114,14 +114,14 @@
       <div class="ad-box shadow-sm border rounded  text-center p-2 my-3 ">
           <p class="small">ADVERTISEMENT</p>
           <a href="https://markaziasolutions.com/contact" target="_blank">
-            <a class="my-3" href="https://markaziasolutions.com/contact" target="_blank">
             <img src="https://scontent.fixc1-11.fna.fbcdn.net/v/t39.30808-6/475753672_528833820210788_8697213902833618929_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=cKDbpi_aCYgQ7kNvwESUARB&_nc_oc=AdlKfkaS68rG2F2ROqRxWUbIaZYzGR4PkeLFbpK6-K0N22dezAow0CjtwqVk7qv_1M-F0nz034X-qC-rn-2k5589&_nc_zt=23&_nc_ht=scontent.fixc1-11.fna&_nc_gid=4oHri6T9kdNQ7OPOEZaVmA&oh=00_AfiPmHlOEpJHW45j1A2ZWbB9P-rY5TQ4yA2h263U7MQkPQ&oe=69207C10" alt="Ad" class="img-fluid rounded">
-            </a>
-          </div>
+          </a>
+      </div>
 
     </div>
   </div>
 </div>
+
 
 <style>
 /* ===== 🎨 Centered Tabs (no scroll) with thin divider & hover underline ===== */

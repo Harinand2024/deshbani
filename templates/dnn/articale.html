@@ -11,7 +11,7 @@
     <!-- 🌟 Left: Featured Big Article -->
     {% for article in Articale|slice:":1" %}
     <div class="col-lg-6 col-md-12">
-      <a href="/{{ article.slug }}" class="text-decoration-none ">
+      <a href="{{ article.newsfrom.slug }}/{{ article.post_cat.sub_cat.cat_slug }}/{{ article.slug }}" class="text-decoration-none ">
         <div class="article-card shadow-sm rounded overflow-hidden position-relative ">
           <div class="article-image position-relative">
             <img src="{{ article.post_image.url }}" class="img-fluid w-100 " alt="{{ article.post_title }}" style="object-fit: cover; min-height: 380px;">
@@ -38,7 +38,7 @@
       <div class="row g-3">
         {% for article in Articale|slice:"1:3" %}
         <div class="col-12">
-          <a href="/{{ article.slug }}" class="text-decoration-none ">
+          <a href="{{ article.newsfrom.slug }}/{{ article.post_cat.sub_cat.cat_slug }}/{{ article.slug }}" class="text-decoration-none ">
             <div class="article-card shadow-sm rounded overflow-hidden ">
               <div class="article-image">
                 <img src="{{ article.post_image.url }}" class="img-fluid w-100" alt="{{ article.post_title }}" style="height: 160px; object-fit: cover;">

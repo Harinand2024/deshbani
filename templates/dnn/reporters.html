@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<div class="container ">
+  <div class="row">
+    <div class="col-12 mb-3">
+      <!-- <div class="section-title">Reporter Profiles</div>
+      <div class="double-underline"></div> -->
+      <h2 class="text-center fw-bold py-3 border-bottom ">
+       Deshbani – From India to the World, Our Active Reporters and Journalist Profiles
+      </h2>
+    </div>
+  </div>
+
+  {% include 'guist_profiles.html' with profiles=profiles %}
+</div>
+{% endblock %}
+
+

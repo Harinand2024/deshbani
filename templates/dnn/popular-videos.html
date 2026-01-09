@@ -20,7 +20,7 @@
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 12px;
+  
 }
 .popular-video .main-video iframe {
   width: 100%;
@@ -32,7 +32,13 @@
 /* 🎞 Thumbnail slider */
 .swiper {
   width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+.swiper-slide {
+  flex-shrink: 0;
+}
+
 .swiper-wrapper {
   display: flex;
   align-items: center;
@@ -66,6 +72,7 @@
   border-radius: 50%;
   padding: 6px 8px;
 }
+
 </style>
 
 <div class="popular-video">

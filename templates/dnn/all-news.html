@@ -49,15 +49,15 @@
                         {% endfor %}
                         {% for Blog in BlogData %}
                         <div class="col-lg-4 colo-md-6 colo-sm-12 mt-4">
-                            <a href="/{{Blog.slug}}">
+                            <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                                  <img class="" src="../upload/{{Blog.post_image}}" alt="">
                             </a>
                             <div class="card-bg-dark mb-3">
                                 
-                                <a class="news-title" href="/{{Blog.slug}}">
+                                <a class="news-title" href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                                     <p>{{Blog.post_title|slice:":60"|safe}}</p>
                                 </a>
-                                <a href="/{{Blog.slug}}" class="news-description">
+                                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="news-description">
                                     <p>{{Blog.post_short_des|slice:":100"|safe}}</p>
                                 </a>
 

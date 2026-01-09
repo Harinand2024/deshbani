@@ -32,12 +32,12 @@
     
     <div class="">
         {% for trendingpost in trendpost %}
-        <a  href="/{{trendingpost.slug}}"><img class="" src="../upload/{{trendingpost.post_image}}" alt=""></a>
+        
         <div class="card-bg-dark mb-3 p-2">
-            <a class="news-title" href="/{{trendingpost.slug}}">
+            <a class="news-title" href="/{{trendingpost.newsfrom.slug}}/{{trendingpost.post_cat.sub_cat.cat_slug}}/{{trendingpost.slug}}"><img class="" src="{{trendingpost.post_image.url}}" alt="{{trendingpost.post_title}}">
                 <p>{{trendingpost.post_title|slice:":60"|safe}}...</p>
             </a>
-            <a href="/{{trendingpost.slug}}" class="news-description">
+            <a href="/{{trendingpost.newsfrom.slug}}/{{trendingpost.post_cat.sub_cat.cat_slug}}/{{trendingpost.slug}}"><img class="" src="{{trendingpost.post_image.url}}" alt="{{trendingpost.post_title}}" class="news-description">
                 <p>{{trendingpost.post_short_des|slice:":100"|safe}}</p>
             </a>
 
