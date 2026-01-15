@@ -1,0 +1,139 @@
+<div class="watchlist-widget">
+  <div class="w-header">
+    <span class="icon">📈</span>
+    <span class="title">Watchlist suggestions</span>
+  </div>
+
+  {% for item in data %}
+  <div class="w-item">
+    <div class="left">
+      <div class="name">{{ item.name }}</div>
+      <div class="sub">{{ item.subtitle }}</div>
+    </div>
+
+    <div class="mid">
+      <canvas class="chart-line {% if item.graph_color == 'red' %}red{% endif %}"></canvas>
+    </div>
+
+    <div class="right {% if item.change >= 0 %}green{% else %}red{% endif %}">
+      {{ item.change }}% <br>
+      <span class="price">{{ item.price }}</span>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+<style>
+    .watchlist-widget {
+  width: 300px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.w-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.w-header .icon {
+  font-size: 18px;
+}
+
+.w-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  position: relative;
+}
+
+.left {
+  width: 70px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.sub {
+  color: #888;
+  font-size: 12px;
+}
+
+.mid {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.right {
+  width: 80px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.green {
+  color: #0ca30d;
+}
+
+.red {
+  color: #d92c2c;
+}
+
+.price {
+  font-size: 12px;
+  color: #333;
+}
+
+.add-btn {
+  position: absolute;
+  right: -5px;
+  top: 22px;
+  background: #f7f7f7;
+  border: 1px solid #ccc;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #eaeaea;
+}
+
+.w-footer {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.see-more {
+  color: #1a73e8;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.see-more:hover {
+  text-decoration: underline;
+}
+
+.chart-line {
+  width: 100%;
+  height: 30px;
+  background: url('https://dummyimage.com/80x30/00aa00/ffffff') no-repeat center/100%;
+}
+
+.chart-line.red {
+  background: url('https://dummyimage.com/80x30/cc0000/ffffff') no-repeat center/100%;
+}
+
+</style>

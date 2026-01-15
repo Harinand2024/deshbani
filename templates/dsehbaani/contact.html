@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+
+<style>
+/* -----------------------------
+   GENERAL PAGE / SECTION
+------------------------------ */
+.contact-section {
+    padding: 40px 15px;
+}
+
+.section-title h3 {
+    border-left: 4px solid #e51b17;
+    padding-left: 10px;
+}
+
+/* -----------------------------
+   LEFT CONTENT AREA
+------------------------------ */
+.contact-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.contact-content h4 {
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+.contact-content p,
+.contact-content li {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* -----------------------------
+   CONTACT FORM
+------------------------------ */
+.contact-form {
+    margin-top: 30px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.contact-form input,
+.contact-form textarea {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.contact-form button {
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 12px;
+    background: #e51b17;
+    border-color: #e51b17;
+}
+
+/* -----------------------------
+   RIGHT COLUMN
+------------------------------ */
+.right-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.right-box h4 {
+    border-left: 4px solid #e51b17;
+    padding-left: 10px;
+}
+
+.ad-box-right img {
+    border-radius: 10px;
+}
+
+/* MAP */
+.custom-map-wrapper iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+</style>
+
+
+<!-- PAGE WRAPPER -->
+<div class="container contact-section">
+
+    <!-- <div class="section-title mb-4">
+        <h3 class="m-0 text-uppercase font-weight-bold py-3 border-bottom">
+            Contact Us For Any Queries
+        </h3>
+    </div> -->
+
+    <div class="row">
+        <!-- LEFT SIDE FULL CONTENT -->
+        <div class="col-lg-12">
+            <div class="contact-content">
+                <h3 class="mb-2 text-uppercase font-weight-bold py-3 border-bottom">
+                    Contact Us For Any Queries
+                </h3>
+                <!-- ⭐ FULL CONTENT (UNCHANGED) ⭐ -->
+                
+                <p class="mb-0 text-justify">
+                    Deshbaani welcomes communication from readers, journalists, institutions, and partners. <br>
+                    We are committed to responsible journalism, transparency, and timely response.
+                </p>
+
+                <h4 class="font-weight-bold mb-1">General Communication</h4>
+                <p class="m-0 text-justify">
+                    For general inquiries, feedback, official communication, and support:
+                </p>
+                <h6>Email: info@deshbaani.com</h6>
+                <div class="mb-3">
+                    <h4 class="font-weight-bold mb-0">News Tips & Story Submissions</h4>
+                    <p class="m-0">
+                        If you have a credible news tip, document, or story of public interest, you may share it with our editorial team.
+                    </p>
+                    <p class="m-0">
+                        Please ensure that the information provided is accurate and supported by relevant details wherever possible.
+                    </p>
+                    <a class="fw-bold" href="mailto:{{ profile_setting.email }}">
+                        {{ profile_setting.email }}
+                    </a>
+
+                    <h4 class="font-weight-bold mb-0">Corrections & Editorial Concerns</h4>
+                    <p>Deshbaani values accuracy and accountability. If you wish to report an error, request a correction, or raise an editorial concern, please contact us with clear reference details.</p>
+                    <h6>Email: info@deshbaani.com</h6>
+
+                    <h4 class="font-weight-bold mb-1">Grievance Redressal</h4>
+                    <p>In accordance with applicable Indian digital media regulations, Deshbaani has a grievance redressal mechanism in place.
+                    </p>
+                    <h6>Email: info@deshbaani.com</h6>
+                    <h6>Response Time: Within 15 days of receipt</h6>
+
+
+                    <h4 class="font-weight-bold mb-1">Head Office</h4>
+                    <h6>Deshbaani</h6>
+                     <p>Mohali, Punjab, India</p>
+                    <h4 class="font-weight-bold mb-1">Partnerships & Professional Engagement</h4>
+                    <p class="m-0">For collaborations, media partnerships, and professional engagements:</p>
+
+                    <h6 class="font-weight-bold my-2">Email: info@deshbaani.com</h6>
+                    
+
+                    <h6 class="font-weight-bold my-2">Important Notice</h6>
+                    <ul>
+                        <li>Anonymous or unverifiable submissions may not be considered</li>
+                        <li>Abusive, misleading, or unlawful communication will not be entertained</li>
+                        <li>All communication is subject to Indian jurisdiction</li>
+                    </ul>
+                </div>
+                <!-- Contact Form -->
+                <!-- <h4 class="text-uppercase font-weight-bold mt-4 mb-3">Contact Us</h4>
+
+                <form class="contact-form">
+
+                    <div class="form-row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control p-3" placeholder="Your Name" required />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <input type="email" class="form-control p-3" placeholder="Your Email" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control p-3" placeholder="Subject" required />
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control p-3" rows="4" placeholder="Message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary font-weight-bold">
+                        Send Message
+                    </button>
+
+                </form> -->
+
+            </div>
+        </div>
+
+
+        <!-- RIGHT COLUMN -->
+        <!-- <div class="col-lg-4 col-md-6 col-sm-12 mt-4 mt-md-0">
+
+            <div class="right-box text-center">
+                <h4 class="m-0 text-uppercase font-weight-bold mb-3">
+                    <i class="fa fa-map-marker-alt mr-2"></i> Location
+                </h4>
+
+                <div class="custom-map-wrapper">
+                    {% if profile_setting.google_map %}
+                        {{ profile_setting.google_map|safe }}
+                    {% else %}
+                        <p>Map is not available.</p>
+                    {% endif %}
+                </div>
+
+                <div class="ad-box-right mt-4">
+                    {% for adrcol in adright %}
+                    <a href="{{ adrcol.ad_url }}" target="_blank">
+                        <img class="img-fluid w-100 mb-3"
+                             src="../upload/{{ adrcol.ad_image }}"
+                             alt="{{ adrcol.ad_url }}">
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div> -->
+
+    </div>
+</div>
+
+{% endblock %}

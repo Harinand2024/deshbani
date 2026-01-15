@@ -569,7 +569,7 @@ def AddArtist(request):
             f"Click the link below to complete your registration:\n"
             f"https://www.janpunjab.com/auth/sign-up/\n\n"
             f"If you are already registered, you may ignore this email.\n\n"
-            f"Warm regards,\nDXB News Network Security Team\n"
+            f"Warm regards,\nDsehbaani News Security Team\n"
             f"📧 info@janpunjab.com\n🌐 www.janpunjab.com"
         )
 

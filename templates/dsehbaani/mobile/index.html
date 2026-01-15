@@ -1,0 +1,702 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<!-- ✅ Hero Slider (GCC Slider) -->
+<div class="container mt-5">
+  <div class="trending-strip mb-2">
+    <span class="trending-label">TRENDING</span>
+
+    {% for Blog in trendpost|slice:"0:9" %}
+      <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}"
+        class="trend-pill {% if forloop.first %}active{% endif %}">
+        {{ Blog.post_title|truncatechars:22 }}
+      </a>
+    {% endfor %}
+  </div>
+  <div class="row pt-3">
+    <!-- ================= LEFT SECTION (col-9): News Content ================= -->
+    <div class="col-lg-9 col-md-12">
+
+      <!-- 🌐 Slider + Two Ads Row -->
+      <div class="row mb-4">
+        <div class="card-header border-0 d-flex align-items-center p-3">
+          <h6 class="mb-0 fw-bold ">Latest News</h6>
+        </div>
+        <!-- 📰 Slider -->
+        <div class="col-lg-6 col-md-12">
+            <section class="dxbindia-slider">
+              <div id="dxbindiaNewsCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                  {% for news in LatestNews %}
+                  <button type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}"></button>
+                  {% endfor %}
+                </div>
+
+                <!-- Slides -->
+                <div class="carousel-inner rounded-4 overflow-hidden card-bg-dark shadow-sm">
+                  {% for news in LatestNews %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="ratio ratio-16x9">
+                      {% if news.video_file %}
+                        <a href="/{{ news.newsfrom.slug }}/{{ news.post_cat.sub_cat.cat_slug }}/{{ news.slug }}">
+                          <video class="w-100 h-100 object-fit-cover" preload="none" loop playsinline autoplay muted>
+                            <source src="{{ news.video_file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </a>
+                      {% else %}
+                        <a href="/{{ news.newsfrom.slug }}/{{ news.post_cat.sub_cat.cat_slug }}/{{ news.slug }}">
+                          <img src="{{ news.post_image.url }}" alt="{{ news.post_title }}" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy">
+                        </a>
+                      {% endif %}
+                    </div>
+
+                    <div class="dxbindia-slide-overlay d-flex flex-column justify-content-end p-4">
+                      <div class="d-flex align-items-center mb-2">
+                        <span class="badge bg-danger me-2">Latest</span>
+                        <span class="text-light small">{{ news.post_date }}</span>
+                      </div>
+                      <h5 class="text-white fw-semibold mb-4 text-truncate-2">
+                        <a href="/{{ news.newsfrom.slug }}/{{ news.post_cat.sub_cat.cat_slug }}/{{ news.slug }}" class="text-white text-decoration-none">
+                          {{ news.post_title|truncatechars:180 }}
+                        </a>
+                      </h5>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                <!-- Controls -->
+                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#dxbindiaNewsCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
+                </button> -->
+
+              </div>
+            </section>
+          </div>
+
+
+      </div>
+
+      <!-- 🌟 Top Stories + 2 More News -->
+      <div class="row mb-4">
+        <!-- Top Stories -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card-bg-dark shadow-sm border top-stories-widget h-100">
+            <div class="card-header border-0 d-flex align-items-center p-1">
+              <span class="me-2 text-danger fs-5">🔥</span>
+              <h6 class="mb-0 fw-bold">Top Stories</h6>
+            </div>
+            <div class="p-2">
+              {% for Blog in trendpost|slice:"0:3" %}
+              <div class="d-flex align-items-center mb-3 story-item">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
+                  <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded story-img"
+                    loading="lazy">
+                </a>
+                <div class="flex-grow-1">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
+                    <div class="fw-semibold hover-title">{{ Blog.post_title|truncatechars:40 }}</div>
+                  </a>
+                  <div class=" small mt-1 d-flex align-items-center">
+                    <span class="">{{ Blog.schedule_date }}</span>
+                    <div class="mx-2" style="--custom-bottom: 0px; --custom-right: 0px;">
+                      {% include 'share.html' with posts=post %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Two More News -->
+        <div class="col-lg-8 col-md-6">
+          <div class="row">
+            <!-- News 3 -->
+            <div class="col-md-6 mb-3">
+              {% for Blog in trendpost|slice:"3:4" %}
+              <div class="card-bg-dark shadow-sm border rounded h-100">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
+                  <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid"
+                    loading="lazy">
+                </a>
+                <div class="py-3 px-2">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
+                    <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
+                  </a>
+                  <div class="small mt-2 d-flex align-items-center">
+                    <span class="">{{ Blog.schedule_date }}</span>
+                    <div class="mx-2" style="--custom-bottom: 0px; --custom-right: 0px;">
+                      {% include 'share.html' with posts=post %}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- News 4 -->
+            <div class="col-md-6">
+              {% for Blog in trendpost|slice:"4:5" %}
+              <div class="card-bg-dark shadow-sm border rounded h-100">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
+                  <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid"
+                    loading="lazy">
+                </a>
+                <div class="py-3 px-2">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
+                    <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
+                  </a>
+                  <div class="small mt-2 d-flex align-items-center">
+                    <span class="">{{ Blog.schedule_date }}</span>
+                    <div class="mx-2" style="--custom-bottom: 0px; --custom-right: 0px;">
+                      {% include 'share.html' with posts=post %}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🌟 Top Breaking News + 2 More News -->
+      <div class="row mb-4">
+        <!-- Top Stories -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card-bg-dark shadow-sm border top-stories-widget h-100">
+            <div class="card-header border-0 d-flex align-items-center p-1">
+              <span class="me-2 text-danger fs-5">🔥</span>
+              <h6 class="mb-0 fw-bold">Breaking News</h6>
+            </div>
+            <div class="p-2">
+              {% for Blog in bnews|slice:"0:3" %}
+              <div class="d-flex align-items-center mb-3 story-item">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
+                  <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded story-img"
+                    loading="lazy">
+                </a>
+                <div class="flex-grow-1">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
+                    <div class="fw-semibold hover-title">{{ Blog.post_title|truncatechars:40 }}</div>
+                  </a>
+                  <div class="small mt-1 d-flex align-items-center">
+                    <span class="">{{ Blog.schedule_date }}</span>
+                    <div class="mx-2" style="--custom-bottom: 0px; --custom-right: 0px;">
+                      {% include 'share.html' with posts=Blog %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Two More News -->
+        <div class="col-lg-8 col-md-6">
+          <div class="row">
+            <!-- News 3 -->
+            <div class="col-md-6">
+              {% for Blog in bnews|slice:"3:4" %}
+              <div class="card-bg-dark shadow-sm border rounded h-100">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
+                  <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid"
+                    loading="lazy">
+                </a>
+                <div class="py-3 px-2">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
+                    <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
+                  </a>
+                  <div class="small mt-2 d-flex align-items-center">
+                    <span class="">{{ Blog.schedule_date }}</span>
+                    <div class="mx-2" style="--custom-bottom: 0px; --custom-right: 0px;">
+                      {% include 'share.html' with posts=Blog %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- News 4 -->
+            <div class="col-md-6">
+              {% for Blog in bnews|slice:"4:5" %}
+              <div class="card-bg-dark shadow-sm border rounded h-100">
+                <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
+                  <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid"
+                    loading="lazy">
+                </a>
+                <div class="py-3 px-2">
+                  <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
+                    <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
+                  </a>
+                  <div class="small mt-2 d-flex align-items-center">
+                    <span class="">{{ Blog.schedule_date }}</span>
+                    <div class="mx-2" style="--custom-bottom: 0px; --custom-right: 0px;">
+                      {% include 'share.html' with posts=Blog %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- ================= RIGHT SECTION (col-3): Ads Sidebar ================= -->
+    <div class="col-lg-3 col-md-12">
+      <!-- Top Stories -->
+
+      <div class="card-bg-dark shadow-sm border rounded top-stories-widge mb-3">
+        <div class="card-header border-0 d-flex align-items-center p-1">
+          <span class="me-2 text-danger fs-5">🔥</span>
+          <h6 class="mb-0 fw-bold">Top Headline</h6>
+        </div>
+        <div class="p-2">
+          {% for Blog in headline|slice:"0:3" %}
+          <div class="d-flex align-items-center mb-3 story-item">
+            <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
+              <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded story-img" loading="lazy">
+            </a>
+            <div class="flex-grow-1">
+              <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
+                <div class="fw-semibold hover-title">{{ Blog.post_title|truncatechars:40 }}</div>
+              </a>
+              <div class=" small mt-1 d-flex align-items-center">
+                <span class="">{{ Blog.schedule_date }}</span>
+                <div class="mx-2" style="--custom-bottom: 0px; --custom-right: 0px;">
+                  {% include 'share.html' with posts=post %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <aside class="ads-sidebar">
+        <div class="card-bg-dark shadow-sm border rounded  text-center p-2 my-3 ">
+          <p class="small">ADVERTISEMENT</p>
+          <img src="" alt="Ad" class="img-fluid rounded">
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLES SECTION: MOBILE ONLY -->
+<section class="d-block d-md-none py-2">
+  <div class="container-fluid">
+    <div class="text-center mb-2">
+      <h5 class="mb-0 newsten-title py-2">Top Articles</h5>
+    </div>
+
+    <!-- Slider -->
+    <div class="owl-carousel article-slider">
+      {% for article in Articale %}
+      <div class="article-card me-2">
+        <div class="post-media">
+          {% if article.video_file %}
+          <video preload="none" loop playsinline autoplay muted class="rounded w-100"
+            style="height:160px; object-fit:cover;">
+            <source src="{{ article.video_file.url }}" type="video/mp4">
+          </video>
+          {% else %}
+          <a href="/{{ article.newsfrom.slug }}/{{ article.post_cat.sub_cat.cat_slug }}/{{ article.slug }}" class="text-dark text-decoration-none">
+            <img src="{{ article.post_image.url }}" alt="{{ article.post_title }}" title="{{ article.post_title }}"
+              loading="lazy" class="rounded w-100" style="height:160px; object-fit:cover;">
+          </a>
+          {% endif %}
+        </div>
+        <h6 class="mt-2 small text-truncate">
+          <a href="/{{ article.newsfrom.slug }}/{{ article.post_cat.sub_cat.cat_slug }}/{{ article.slug }}" class="text-dark text-decoration-none">
+            {{ article.post_title|truncatechars:70 }}
+          </a>
+        </h6>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+   <div class="col-md-12 mt-2">
+     
+      {% include 'popular-videos.html' %} 
+
+       <div class="card-bg-dark shadow-sm border rounded  text-center p-2 my-3 ">
+          <p class="small">ADVERTISEMENT</p>
+          <img src="" alt="Ad" class="img-fluid rounded">
+        </div>
+    </div>
+</section>
+
+
+<!-- News Tabs Section -->
+<div class="container my-4">
+  <div class="row">
+    <!-- ✅ MAIN CONTENT -->
+    <div class="col-md-9 mb-3">
+
+      <!-- 🔹 Tabs with scroll + arrows -->
+      <div class="tabs-wrapper border-bottom mb-3 pb-2 position-relative">
+
+        <!-- Left Arrow -->
+        <button class="scroll-btn left" id="scrollLeft" aria-label="Scroll Left">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Tabs Container -->
+        <div class="tabs-scroll-container" id="tabsScrollContainer">
+          <ul class="nav slick-tabs flex-nowrap" id="categoryTab" role="tablist">
+            {% for category, subcat_data in grouped_postsdata2.items %}
+            <li class="" role="presentation">
+              <button class="nav-link {% if forloop.first %}active{% endif %}"
+                id="tab-{{ category.cat_slug }}"
+                data-bs-toggle="tab"
+                data-bs-target="#pane-{{ category.cat_slug }}"
+                type="button"
+                role="tab">
+                {{ category.cat_name }}
+              </button>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Right Arrow -->
+        <button class="scroll-btn right" id="scrollRight" aria-label="Scroll Right">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- 🔹 Category Content -->
+      <div class="tab-content mt-3" id="categoryTabContent">
+        {% for category, subcat_data in grouped_postsdata2.items %}
+        {% with subcat_data.posts as posts %}
+        {% if posts|length >= 6 %}
+        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="pane-{{ category.cat_slug }}"
+          role="tabpanel">
+
+          <!-- 📰 Top Section -->
+          <div class="row g-3 align-items-stretch">
+
+            <!-- Left Big News -->
+            {% with posts.0 as post %}
+            <div class="col-lg-6 col-md-12">
+              <div class="news-card big-card h-100">
+                <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
+                  <img src="{{ post.post_image.url }}" alt="{{ post.post_title }}" class="img-fluid rounded-3 w-100"
+                    loading="lazy">
+                </a>
+                <div class="p-3">
+                  <h5 class="fw-bold mb-2 lh-sm">
+                    <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}" class="text-decoration-none hover-red">
+                      {{ post.post_title|truncatechars:120 }}
+                    </a>
+                  </h5>
+                  <p class="small mb-2">
+                    {{ post.post_description|truncatechars:160 }}
+                  </p>
+                  <div class="meta-info d-flex align-items-center gap-2 small">
+                    <span>{{ post.schedule_date|date:"M d, Y" }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endwith %}
+
+            <!-- Right 4 Small News -->
+            <div class="col-lg-6 col-md-12">
+              <div class="row g-3">
+                {% for post in posts|slice:"1:5" %}
+                <div class="col-md-12">
+                  <div class="news-card mini-card h-100">
+                    <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
+                      <img src="{{ post.post_image.url }}" alt="{{ post.post_title }}" class="img-fluid rounded-3 mb-2"
+                        loading="lazy">
+                    </a>
+                    <h6 class="fw-semibold mb-1 lh-sm">
+                      <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}" class="text-decoration-none hover-red">
+                        {{ post.post_title|truncatechars:70 }}
+                      </a>
+                    </h6>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- 📰 More News Grid -->
+          <div class="row g-3 mt-3">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6">
+              <div class="news-card h-100">
+                <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}">
+                  <img src="{{ post.post_image.url }}" alt="{{ post.post_title }}" class="img-fluid rounded-3 mb-2"
+                    loading="lazy">
+                </a>
+                <h6 class="fw-semibold mb-1 lh-sm">
+                  <a href="/{{ post.newsfrom.slug }}/{{ post.post_cat.sub_cat.cat_slug }}/{{ post.slug }}" class="text-decoration-none hover-red">
+                    {{ post.post_title|truncatechars:80 }}
+                  </a>
+                </h6>
+                <div class="meta-info small">
+                  {{ post.schedule_date|date }}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ✅ RIGHT SIDEBAR -->
+    <div class="col-lg-3 col-md-12 col-sm-12">
+      {% include 'reels-news.html' %}
+
+      
+    </div>
+  </div>
+</div>
+
+<!-- Video News Section -->
+<div class="col-lg-8 col-md-12 col-sm-12 py-4 bg-white mb-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold text-uppercase m-0">Video News</h5>
+    <a href="/all-video-news/all" class="text-btn text-decoration-none fw-semibold">View All</a>
+  </div>
+  <div class="slider-container-top">
+    <div class="main-swiper">
+      <div class="swiper-wrapper">
+        {% for CatVid in videos %}
+        <div class="swiper-slide">
+          <a href="/video/{{CatVid.slug}}">
+            <img class="rounded" src="https://img.youtube.com/vi/{{CatVid.video_url}}/hqdefault.jpg"
+              alt="{{CatVid.video_title}}" title="{{CatVid.video_title}}" loading="lazy" width="709" height="463" />
+          </a>
+          <div class="dxv-overlay">
+            <span class="category">{{ CatVid.News_Category }}</span>
+            <a href="/video/{{CatVid.slug}}">
+              <h6 class="text-btn">{{ CatVid.video_title }}</h6>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- jQuery & Owl Carousel -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<!-- Owl Carousel CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+<script>
+  $(document).ready(function () {
+    // Article slider
+    $('.article-slider').owlCarousel({
+      loop: true,
+      margin: 10,
+      autoplay: true,
+      autoplayTimeout: 3000,
+      autoplayHoverPause: true,
+      dots: false,
+      nav: false,
+      responsive: {
+        0: { items: 1.2 },
+        400: { items: 1.5 },
+        576: { items: 2 }
+      }
+    });
+
+    // Hero slides
+    $(".hero-slides").owlCarousel({
+      items: 1,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplayHoverPause: true,
+      nav: true,
+      dots: false,
+      navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"] // optional
+    });
+  });
+</script>
+
+<script>
+  let players = [];
+  let swiper;
+
+  // ✅ YouTube API Ready
+  function onYouTubeIframeAPIReady() {
+    const iframes = document.querySelectorAll('.video-iframe');
+    iframes.forEach((iframe, index) => {
+      players[index] = new YT.Player(iframe, {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    });
+  }
+
+  // ✅ Pause all at start, play first muted
+  function onPlayerReady(event) {
+    players.forEach(player => player && player.pauseVideo());
+    if (players[0]) {
+      players[0].mute();
+      players[0].playVideo();
+    }
+  }
+
+  // ✅ On video end → move to next slide
+  function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+      // 🛠 Added safety check
+      if (typeof swiper !== "undefined" && swiper.slideNext) {
+        goToNextSlide();
+      }
+    }
+  }
+
+  // ✅ Safe next slide
+  function goToNextSlide() {
+    if (!swiper) return;
+    swiper.slideNext();
+    playCurrentSlideVideo();
+  }
+
+  // ✅ Safe prev slide
+  function goToPrevSlide() {
+    if (!swiper) return;
+    swiper.slidePrev();
+    playCurrentSlideVideo();
+  }
+
+  // ✅ Play only active slide’s video
+  function playCurrentSlideVideo() {
+    const currentIndex = swiper ? swiper.realIndex : 0;
+    players.forEach(p => p && p.pauseVideo && p.pauseVideo());
+    setTimeout(() => {
+      if (players[currentIndex]) {
+        players[currentIndex].mute();
+        players[currentIndex].playVideo();
+      }
+    }, 500);
+  }
+
+  // ✅ Initialize Swiper safely after DOM load
+  document.addEventListener('DOMContentLoaded', function () {
+    swiper = new Swiper('.trending-swiper', {
+      loop: true,
+      autoplay: false,
+      on: {
+        slideChange: playCurrentSlideVideo
+      }
+    });
+
+    // Buttons (only if exist)
+    const nextBtn = document.getElementById('skipBtn');
+    const prevBtn = document.getElementById('prevBtn');
+
+    if (nextBtn) nextBtn.addEventListener('click', goToNextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', goToPrevSlide);
+  });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const scrollContainer = document.querySelector('.trending-items-container');
+  const leftBtn = document.querySelector('.scroll-btn.left-btn');
+  const rightBtn = document.querySelector('.scroll-btn.right-btn');
+  let autoScroll;
+
+  // 🧭 Function to check overflow and toggle arrows
+  function checkOverflow() {
+    if (scrollContainer.scrollWidth > scrollContainer.clientWidth) {
+      leftBtn.style.display = 'block';
+      rightBtn.style.display = 'block';
+    } else {
+      leftBtn.style.display = 'none';
+      rightBtn.style.display = 'none';
+    }
+  }
+
+  // Manual scroll buttons
+  leftBtn.addEventListener('click', () => {
+    scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
+  });
+  rightBtn.addEventListener('click', () => {
+    scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+  });
+
+  // Auto-scroll
+  function startAutoScroll() {
+    autoScroll = setInterval(() => {
+      scrollContainer.scrollBy({ left: 1, behavior: 'smooth' });
+      if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
+        scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+      }
+    }, 30);
+  }
+  function stopAutoScroll() { clearInterval(autoScroll); }
+
+  // Start + hover pause
+  startAutoScroll();
+  scrollContainer.addEventListener('mouseenter', stopAutoScroll);
+  scrollContainer.addEventListener('mouseleave', startAutoScroll);
+
+  // ✅ Initial + responsive check
+  checkOverflow();
+  window.addEventListener('resize', checkOverflow);
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollContainer = document.getElementById("tabsScrollContainer");
+  const leftBtn = document.getElementById("scrollLeft");
+  const rightBtn = document.getElementById("scrollRight");
+
+  leftBtn.addEventListener("click", () => {
+    scrollContainer.scrollBy({ left: -200, behavior: "smooth" });
+  });
+
+  rightBtn.addEventListener("click", () => {
+    scrollContainer.scrollBy({ left: 200, behavior: "smooth" });
+  });
+});
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,187 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<style>
+/* 🎬 Container */
+.popular-video {
+  width: 100%;
+  background: linear-gradient(to right, #485563 0%, #29323c  51%, #485563  100%);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* 🎥 Main video */
+.popular-video .main-video {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  
+}
+.popular-video .main-video iframe {
+  width: 100%;
+  height: 210px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* 🎞 Thumbnail slider */
+.swiper {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.swiper-slide {
+  flex-shrink: 0;
+}
+
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+.custom-slide {
+  position: relative;
+  width: 105px !important;
+  height: 70px !important;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+.custom-slide:hover {
+  transform: scale(1.05);
+}
+.custom-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.custom-slide .play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 6px 8px;
+}
+
+</style>
+
+<div class="popular-video">
+
+  <!-- 🎬 Main Video -->
+  <div class="main-video" id="mainVideoContainer">
+    {% if videos %}
+      {% with vid=videos.0.video_url %}
+        {% if "watch?v=" in vid %}
+          {% with vid_id=vid|cut:"https://www.youtube.com/watch?v=" %}
+            <iframe
+              id="mainVideo"
+              src="https://www.youtube.com/embed/{{ vid_id }}?autoplay=0&mute=0&rel=0&origin={{ request.scheme }}://{{ request.get_host }}"
+              title="{{ videos.0.video_title }}"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          {% endwith %}
+        {% else %}
+          <iframe
+            id="mainVideo"
+            src="https://www.youtube.com/embed/{{ vid }}?autoplay=0&mute=0&rel=0&origin={{ request.scheme }}://{{ request.get_host }}"
+            title="{{ videos.0.video_title }}"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        {% endif %}
+      {% endwith %}
+    {% endif %}
+  </div>
+
+  <!-- 🎞 Thumbnail Slider -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {% for CatVid in videos %}
+        {% if "watch?v=" in CatVid.video_url %}
+          {% with vid_id=CatVid.video_url|cut:"https://www.youtube.com/watch?v=" %}
+            <div class="swiper-slide custom-slide">
+              <a href="javascript:void(0);"
+                 class="thumb-video"
+                 data-video="{{ vid_id }}"
+                 data-title="{{ CatVid.video_title }}">
+                <img src="https://img.youtube.com/vi/{{ vid_id }}/hqdefault.jpg"
+                     alt="{{ CatVid.video_title }}">
+                <div class="play-btn">▶</div>
+              </a>
+            </div>
+          {% endwith %}
+        {% else %}
+          <div class="swiper-slide custom-slide">
+            <a href="javascript:void(0);"
+               class="thumb-video"
+               data-video="{{ CatVid.video_url }}"
+               data-title="{{ CatVid.video_title }}">
+              <img src="https://img.youtube.com/vi/{{ CatVid.video_url }}/hqdefault.jpg"
+                   alt="{{ CatVid.video_title }}">
+              <div class="play-btn">▶</div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ✅ Swiper initialization
+  new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 8,
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    grabCursor: true,
+  });
+
+  // ✅ Function to change main video
+  function changeMainVideo(videoId, videoTitle) {
+    const container = document.getElementById("mainVideoContainer");
+    if (!container || !videoId) return;
+
+    container.innerHTML = `
+      <iframe
+        width="100%"
+        height="210"
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&origin=${window.location.origin}"
+        title="${videoTitle}"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy">
+      </iframe>`;
+  }
+
+  // ✅ Handle thumbnail clicks
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest(".thumb-video");
+    if (!el) return;
+    e.preventDefault();
+    changeMainVideo(el.dataset.video, el.dataset.title);
+  });
+
+});
+</script>

@@ -1,1 +1,1 @@
-from dnn.wsgi import application
+from dsehbaani.wsgi import application
