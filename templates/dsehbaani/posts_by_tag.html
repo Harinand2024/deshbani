@@ -21,8 +21,8 @@
                         </a>
 
                         <div class="d-flex align-items-center px-2 my-1 mb-1 meta">
-                            <small><i class="fas fa-calendar-alt"></i> {{post.schedule_date|date}}</small>
-                            <small class="ml-3"><i class="fas fa-clock"></i> {{ post.schedule_date|time }}</small>
+                            <small> {{post.schedule_date|date}}</small>
+                            <small class="ml-3"> {{ post.schedule_date|time }}</small>
                             <small class="ml-3"><i class="far fa-eye mr-2"></i>{{post.post_status|add:post.viewcounter}}</small>
                             <div class="ml-3 share-icons-container" style="--custom-bottom: 0px; --custom-right: 0px;">
                                 {% include 'share.html' with posts=post %}
@@ -82,8 +82,8 @@
                         </a>
 
                         <div class="d-flex align-items-center px-2 my-1 mb-1 meta">
-                            <small><i class="fas fa-calendar-alt"></i> {{post.schedule_date|date}}</small>
-                            <small class="ml-3"><i class="fas fa-clock"></i> {{ post.schedule_date|time }}</small>
+                            <small> {{post.schedule_date|date}}</small>
+                            <small class="ml-3"> {{ post.schedule_date|time }}</small>
                             <small class="ml-3"><i class="far fa-eye mr-2"></i>{{post.post_status|add:post.viewcounter}}</small>
                         </div>
                     </div>

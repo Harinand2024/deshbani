@@ -33,8 +33,8 @@
                                 </a>
                                 <div class="p-3 card-bg-dark">                                    
                                     <p>
-                                    <small><i class="fas fa-calendar-alt"></i> {{vidpost.schedule_date|date}}</small>
-                                    <small class="ml-3"> <i class="fas fa-clock"></i> {{ vidpost.schedule_date|time }}</small>
+                                    <small> {{vidpost.schedule_date|date}}</small>
+                                    <small class="ml-3">  {{ vidpost.schedule_date|time }}</small>
                                     </p>
                                    
                                     <a  href="/video/{{vidpost.slug}}">
@@ -62,8 +62,8 @@
                                 </a>
 
                                 <div class="d-flex align-items-center px-2 my-1 mb-1 news-meta">
-                                    <small><i class="fas fa-calendar-alt"></i> {{Blog.schedule_date|date}}</small>
-                                    <small class=""><i class="fas fa-clock"></i> {{ Blog.schedule_date|time }}</small>
+                                    <small> {{Blog.schedule_date|date}}</small>
+                                    <small class=""> {{ Blog.schedule_date|time }}</small>
                                     <small class=""><i class="far fa-eye mr-2"></i>{{Blog.post_status|add:Blog.viewcounter}}</small>
                                     <div style="--custom-bottom: 0px; --custom-right: 0px;">
                                             {% include 'share.html' with posts=Blog %}

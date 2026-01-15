@@ -60,10 +60,9 @@
                         </script>
                     </div> -->
                     <div class="d-flex align-items-center">
-                        <small><i class="fas fa-calendar-alt"></i> {{Vnews.video_date|date}}</small>
-                        <small class="ml-3"> <i class="fas fa-clock"></i> {{ Vnews.video_date|time }}</small>
-                        <small class="ml-3"><i
-                                class="far fa-eye mr-2"></i>{{Vnews.counter|add:Vnews.viewcounter}}</small>
+                        <small> {{Vnews.video_date|date}}</small>
+                        <small class="ml-3">  {{ Vnews.video_date|time }}</small>
+                        <small class="ml-3"><i class="far fa-eye mr-2"></i>{{Vnews.counter|add:Vnews.viewcounter}}</small>
                     </div>
                     {% for tag in Vnews.tags.all %}
                         <a href="{{ tag.get_absolute_url }}" class="badge rounded-pill bg-primary-subtle me-2">#{{ tag.name }}</a>

@@ -268,7 +268,7 @@
 
 .login-btn {
     padding: 6px 15px;
-    background: #ed1c24;
+    background: #ff6215;
     color: white !important;
     border: none;
     border-radius: 6px;
@@ -360,7 +360,7 @@
     <div class="d-flex align-items-center">
        <!-- Notification -->
       <a class="" data-bs-toggle="modal" data-bs-target="#ModalSubscribe">
-        <i class="bi bi-bell-fill fs-5 text-danger"></i>
+        <i class="bi bi-bell-fill fs-6"></i>
       </a>
       <div class="d-flex gap-3 fs-2 mx-2">
         {% if profile_setting.youtube %}
@@ -418,8 +418,8 @@
   <!-- TOP NAV -->
   <!-- ✅ DXBINDIA Dynamic Navigation -->
     <div class="dxbindia-topnav">
-       <button id="menuBtn" class="btn btn-light">
-        <i class="bi bi-list"></i>
+       <button id="menuBtn" class="btn text-dark">
+        <i class="bi bi-list" style="color: var(--dxb-text);"></i>
       </button>
       
       {% for link in Blogcat %}
@@ -518,7 +518,7 @@
 
           <button type="submit"
             class="btn w-100 mt-4 py-2 rounded-pill fw-semibold text-white"
-            style="background-color: #ed1c24; border: none; font-size: 16px;">
+            style="background-color: #ff6215; border: none; font-size: 16px;">
             Search
           </button>
         </form>

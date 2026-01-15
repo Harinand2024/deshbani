@@ -27,7 +27,7 @@
                             <div class="mb-2">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                     href="">{{mnews.post_cat|lower}}</a>
-                                <a class="t-white" href="/{{mnews.slug}}"><i class="fas fa-calendar-alt"></i> {{mnews.post_date|date}}</a>
+                                <a class="t-white" href="/{{mnews.slug}}"> {{mnews.post_date|date}}</a>
                             </div>
                             <h3><a class="h2 m-0 t-white text-uppercase font-weight-bold" href="/{{mnews.slug}}">{{mnews.post_title}}</a></h3>
                         </div>
@@ -57,8 +57,8 @@
             <a class="font-weight-semi-bold" href="{{Blog.slug}}">Read More.</a>
         </p>
         <div class="d-flex align-items-center">
-        <small ><i class="fas fa-calendar-alt"></i> {{Blog.post_date|date}}</small>
-        <small class="ml-3"> <i class="fas fa-clock"></i> {{ Blog.post_date|time }}</small>
+        <small > {{Blog.post_date|date}}</small>
+        <small class="ml-3">  {{ Blog.post_date|time }}</small>
         <small class="ml-3"><i class="far fa-eye mr-2"></i>{{Blog.post_status}}</small>
         </div>
    

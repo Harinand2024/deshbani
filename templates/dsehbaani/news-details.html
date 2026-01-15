@@ -132,7 +132,7 @@ li {
     <div class="col-lg-9 col-md-7 col-sm-12">
       <div class="position-relative my-1">
        
-        <div class="mb-3">
+        <div class="card-bg-dark"style="box-shadow: 0 2px 18px rgb(0 0 0 / 55%); border-radius: 8px 8px 0px 0px;">
           <div class="section-title">{{ Blogdetails.post_title }}</div>
            <div class="d-flex align-items-center mt-3">
             <p class="m-0">
@@ -151,14 +151,10 @@ li {
                 {% endif %}
               </p>
                 <small class="mx-2">{{ Blogdetails.schedule_date|date }}</small>
-                <small class="mx-2" >{{ Blogdetails.schedule_date|time }}</small>
-                <small class="mx-2">{{ Blogdetails.post_status|add:Blogdetails.viewcounter }}</small>
+                <small >{{ Blogdetails.schedule_date|time }}</small>
+                <small class="mx-2"><i class="far fa-eye mr-2"></i>{{ Blogdetails.post_status|add:Blogdetails.viewcounter }}</small>
             </div>
-            <div class="mb-2">
-              
-             
-            </div>
-          <div class="double-underline"></div>
+          <!-- <div class="double-underline"></div> -->
           
         </div>
         {% if Blogdetails.post_image == '' %}
@@ -168,7 +164,7 @@ li {
         <img class="img-fluid w-100" src="{{ Blogdetails.post_image.url }}" style="object-fit: cover"
           alt="{{ Blogdetails.post_title }}" title="{{ Blogdetails.post_title }}" loading="lazy">
         {% endif %}
-        <div class="py-3 card-bg-dark">
+        <div class="py-3 card-bg-dark" style="box-shadow: 0 2px 18px rgb(0 0 0 / 55%); border-radius: 0px 0px 8px 8px;">
               <!-- 🌐 SOCIAL SHARE VERTICAL -->
               <!-- 🌟 HTML -->
                 <div class="social-share-vertical mb-2">
@@ -246,8 +242,8 @@ li {
 
           <div class="border-top-0 mt-1">
             <div class="d-flex align-items-center my-3">
-              <small><i class="fas fa-calendar-alt"></i> {{ mnews.schedule_date|date }}</small>
-              <small ><i class="fas fa-clock"></i> {{ mnews.schedule_date|time }}</small>
+              <small> {{ mnews.schedule_date|date }}</small>
+              <small > {{ mnews.schedule_date|time }}</small>
               <small ><i class="far fa-eye mr-2"></i>{{ mnews.post_status|add:mnews.viewcounter }}</small>
             </div>
 
@@ -273,14 +269,14 @@ li {
       </div> -->
       <div class="row mt-3">
          <div class="mb-3">
-          <div class="section-title">Artcale</div>
+          <div class="section-title">Articles</div>
           <div class="double-underline"></div>
         </div>
         {% for Blog in BlogData %}
         <div class="col-lg-4">
           <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}"><img class="" src="../upload/{{Blog.post_image}}" alt=""></a>
           
-          <div class="card-bg-dark mb-3">
+          <div class="card-bg-dark mb-3" style="box-shadow: 0 2px 18px rgb(0 0 0 / 55%); border-radius: 8px;">
             
             <a class="news-title" href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
               <p>{{Blog.post_title|slice:":60"|safe}}...</p>
@@ -289,11 +285,11 @@ li {
               <p>{{Blog.post_short_des|slice:":100"|safe}}</p>
             </a>
 
-            <div class="d-flex align-items-center px-2 my-1 mb-1 news-meta">
-              <small><i class="fas fa-calendar-alt"></i> {{Blog.schedule_date|date}}</small>
-              <small class="mx-2" ><i class="fas fa-clock"></i> {{ Blog.schedule_date|time }}</small>
+            <div class="d-flex align-items-center px-2 justify-content-start news-meta">
+              <small> {{Blog.schedule_date|date}}</small>
+              <small class="mx-2" > {{ Blog.schedule_date|time }}</small>
               <small ><i class="far fa-eye mr-2"></i>{{Blog.post_status|add:Blog.viewcounter}}</small>
-              <div style="--custom-bottom: 0px; --custom-right: 0px;">
+              <div style="--custom-bottom: 0px; --custom-right: 0px; margin-left:10px;">
                 {% include 'share.html' with posts=Blog %}
               </div>
             </div>

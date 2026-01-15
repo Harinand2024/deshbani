@@ -15,7 +15,7 @@
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                 href="/video/{{MainVid.slug}}">{{MainVid.News_Category}}</a>
-                            <a class="t-white" href=""><i class="fas fa-calendar-alt"></i> {{MainVid.video_date|date}} || <i class="far fa-eye mr-2"></i>{{MainVid.video_status}}</a>
+                            <a class="t-white" href=""> {{MainVid.video_date|date}} || <i class="far fa-eye mr-2"></i>{{MainVid.video_status}}</a>
                         </div>
                         <a class="h2 m-0 t-white text-uppercase font-weight-bold" href="/video/{{MainVid.slug}}">{{MainVid.video_title}}</a>
                     </div>
@@ -39,7 +39,7 @@
                                     href="/video/{{CatVid.slug}}">{{CatVid.News_Category}}</a>
                             <a class="h6 m-0 t-white text-uppercase font-weight-bold" href="/video/{{CatVid.slug}}">{{CatVid.video_title}}</a>
                             <div class="mb-1">
-                                <a class="t-white" href=""><small><i class="fas fa-calendar-alt"></i> {{CatVid.video_date|date}} || <i class="far fa-eye mr-1"></i>                                {{CatVid.counter|add:CatVid.viewcounter}}
+                                <a class="t-white" href=""><small> {{CatVid.video_date|date}} || <i class="far fa-eye mr-1"></i>                                {{CatVid.counter|add:CatVid.viewcounter}}
                                 </small></a>
                             </div>
                         </div>

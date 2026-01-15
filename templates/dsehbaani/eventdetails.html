@@ -28,7 +28,7 @@
                         <div class="overlay">
                             <a class="h6 m-0 t-white text-uppercase font-weight-bold" href="/video/{{CatVid.slug}}">{{CatVid.video_title}}</a>
                             <div class="mb-1">
-                                <a class="t-white" href=""><small><i class="fas fa-calendar-alt"></i> {{CatVid.video_date|date}} || <i class="far fa-eye mr-1"></i>{{CatVid.video_status}}</small></a>
+                                <a class="t-white" href=""><small> {{CatVid.video_date|date}} || <i class="far fa-eye mr-1"></i>{{CatVid.video_status}}</small></a>
                             </div>
                         </div>
                     </div>
@@ -59,8 +59,8 @@
             <div class="mb-2">
             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="/{{dbt.slug}}">Read More</a>
             <a class="text-body" href="">
-            <small ><i class="fas fa-calendar-alt"></i> {{dbt.schedule_date|date}}</small>
-            <small class="ml-3"> <i class="fas fa-clock"></i> {{ dbt.schedule_date|time }}</small>
+            <small > {{dbt.schedule_date|date}}</small>
+            <small class="ml-3">  {{ dbt.schedule_date|time }}</small>
             </a>
             </div>
 
@@ -85,11 +85,11 @@
             <div class="col-lg-6 p-1 mb-1">
                 
                     <samp class="font-weight-semi-bold badge badge-primary">Event Date :</samp>
-                        <i class="fas fa-calendar-alt"></i> {{EvData.Event_date|date}}
+                         {{EvData.Event_date|date}}
                 <a class="h4 d-block mb-1 text-secondary" href="/{{EvData.slug}}">{{EvData.post_title}}
                 </a>
                 <small>
-                    Post Date : <i class="fas fa-calendar-alt"></i> {{EvData.post_date|date}} :</small>
+                    Post Date :  {{EvData.post_date|date}} :</small>
         </div>
         {% endfor %}  
         <div class="col-lg-12 mt-3">
@@ -109,8 +109,8 @@
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="/{{Blog.slug}}">Read More</a>
                                     <a class="text-body" href="">
-                                        <small ><i class="fas fa-calendar-alt"></i> {{Blog.schedule_date|date}}</small>
-                                <small class="ml-3"> <i class="fas fa-clock"></i> {{ Blog.schedule_date|time }}</small>
+                                        <small > {{Blog.schedule_date|date}}</small>
+                                <small class="ml-3">  {{ Blog.schedule_date|time }}</small>
                             </a>
                                 </div>
                                 
