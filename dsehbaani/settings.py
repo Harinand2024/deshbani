@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'django_user_agents',
     #'django_crontab',
     #'embed_video',
+    'rest_framework',
+    'webstories',
 ]
 SITE_ID = 1
 from easy_thumbnails.conf import Settings as thumbnail_settings
@@ -120,6 +122,14 @@ DATABASES = {
         'PORT': '3306',       
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'newsibleasia.sqlite3',
+#     }
+# }
+
 
 # DATABASES = {
 #     'default': {

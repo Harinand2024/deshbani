@@ -27,6 +27,7 @@ from django.views.generic.base import TemplateView, RedirectView
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from dsehbaani.sitemaps import custom_sitemap_index, sitemap_news, sitemap_images, sitemap_images_by_month, sitemap_videos, sitemap_videos_by_month, sitemap_article, sitemap_article_by_month, sitemap_archive, sitemap_archive_by_month, sitemap_tags, sitemap_tag_detail, sitemap_static, sitemap_categories, sitemap_category_detail
+from webstories.sitemaps import WebStorySitemap
 #sitmap end
 
 
@@ -40,8 +41,14 @@ admin.site.index_title="Dasboard"
 #      'StaticUrl':StaticSitemap
 #    }
 
+
+sitemaps = {
+    'webstories': WebStorySitemap,
+}
+
 urlpatterns = [
     path('', views.home, name="home"),
+    path('webstories/', include('webstories.urls')),
     path('auth/', include('journalist.urls')),
     # Canonical tag route
     path('tags/<slug:slug>', views.posts_by_tag, name='posts_by_tag'),
