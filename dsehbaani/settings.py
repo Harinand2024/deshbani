@@ -99,6 +99,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'setting.context.setting_context',
                 'setting.context.cms_context',
+                
+                'webstories.context_processors.navigation.blog_categories',
             ],
         },
     },
