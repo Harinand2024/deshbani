@@ -132,28 +132,42 @@ li {
     <div class="col-lg-9 col-md-7 col-sm-12">
       <div class="position-relative my-1">
        
-        <div class="card-bg-dark"style=" border-radius: 8px 8px 0px 0px;">
-          <div class="section-title">{{ Blogdetails.post_title }}</div>
-           <div class="d-flex align-items-center mt-3">
-            <p class="m-0">
-                {% if Blogdetails.author %}
-                Deshbaani News :  {{ Blogdetails.author.first_name|default:""|capfirst }}
+        <div class="card-bg-dark"style="border-radius: 8px; background: #fff;
+    padding: 5px 10px;">
+          <div class="section-title mt-4">{{ Blogdetails.post_title }}</div>
+          <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-3 small">
+
+            <!-- Author -->
+            <p class="m-0 me-md-2">
+              {% if Blogdetails.author %}
+                Deshbaani News :
+                {{ Blogdetails.author.first_name|default:""|capfirst }}
                 {{ Blogdetails.author.last_name|default:""|capfirst }}
-                {% elif Blogdetails.journalist %}
+
+              {% elif Blogdetails.journalist %}
                 Author :
                 <a href="{% url 'journalist_profile' Blogdetails.journalist.username %}"
-                  style="color: #f79323 !important;">
-                  {{ Blogdetails.journalist.first_name|default:""|capfirst }} 
+                  style="color:#ff0003;">
+                  {{ Blogdetails.journalist.first_name|default:""|capfirst }}
                   {{ Blogdetails.journalist.last_name|default:""|capfirst }}
                 </a>
-                {% else %}
+
+              {% else %}
                 Post by : Admin
-                {% endif %}
-              </p>
-                <small class="mx-2">{{ Blogdetails.schedule_date|date }}</small>
-                <small >{{ Blogdetails.schedule_date|time }}</small>
-                <small class="mx-2"><i class="far fa-eye mr-2"></i>{{ Blogdetails.post_status|add:Blogdetails.viewcounter }}</small>
+              {% endif %}
+            </p>
+
+            <!-- Date + Time + Views -->
+            <div class="d-flex flex-wrap gap-2 mt-1 mt-md-0">
+              <small>{{ Blogdetails.schedule_date|date }}</small>
+              <small>{{ Blogdetails.schedule_date|time }}</small>
+              <small>
+                <i class="far fa-eye me-1"></i>{{ Blogdetails.viewcounter }}
+              </small>
             </div>
+
+          </div>
+
           <!-- <div class="double-underline"></div> -->
           
         </div>
@@ -164,7 +178,8 @@ li {
         <img class="img-fluid w-100" src="{{ Blogdetails.post_image.url }}" style="object-fit: cover"
           alt="{{ Blogdetails.post_title }}" title="{{ Blogdetails.post_title }}" loading="lazy">
         {% endif %}
-        <div class="py-3 card-bg-dark" style=" border-radius: 0px 0px 8px 8px;">
+        <div class="py-3 card-bg-dark" style=" border-radius: 8px; background: #fff;
+    padding: 5px 10px;">
               <!-- 🌐 SOCIAL SHARE VERTICAL -->
               <!-- 🌟 HTML -->
                 <div class="social-share-vertical mb-2">
@@ -204,7 +219,7 @@ li {
           </div>
 
           {% for tag in Blogdetails.tags.all %}
-          <a href="/topic/{{ tag.slug }}" class="badge rounded-pill bg-primary-subtle me-2">#{{ tag.name }}</a>
+          <a href="/topic/{{ tag.slug }}" class="badge rounded-pill bg-primary-subtle me-2 mb-2">#{{ tag.name }}</a>
           {% endfor %}
         </div>
       </div>
@@ -234,16 +249,17 @@ li {
       {% endfor %} -->
       {# -----------main-news--------- #}
 
-      <div class="row mt-5">
+      <div class="row mt-4">
          <div class="mb-1">
-          <div class="section-title">Articles</div>
+          <div class="section-title mt-2">Articles</div>
           <div class="double-underline"></div>
         </div>
         {% for Blog in BlogData %}
         <div class="col-lg-4">
           <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}"><img class="" src="../upload/{{Blog.post_image}}" alt=""></a>
           
-          <div class="card-bg-dark mb-3" style=" border-radius: 0px 0px 8px 8px;">
+          <div class="card-bg-dark mb-3" style="border-radius: 8px; background: #fff;
+    padding: 5px 10px;">
             
             <a class="news-title" href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
               <p>{{Blog.post_title|slice:":60"|safe}}...</p>

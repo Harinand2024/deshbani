@@ -109,8 +109,12 @@
 
     <!-- ✅ RIGHT SIDEBAR -->
     <div class="col-lg-3 col-md-12 col-sm-12 mb-4">
-      {% include 'popular-videos.html' %} 
-
+      <div class="mb-3">
+        <div class="section-title">VIDEOS</div>
+        <div class="double-underline"></div>
+      </div>
+      {% include 'reels-news.html' %} 
+      
       <div class="ad-box shadow-sm border rounded  text-center p-2 my-3 ">
           <p class="small">ADVERTISEMENT</p>
           <a href="https://markaziasolutions.com/contact" target="_blank">
@@ -159,13 +163,13 @@
 
 /* small hover lift + color */
 .slick-tabs .nav-link:hover {
-  color: #f79323;
+  color: #ff0003;
   transform: translateY(-2px);
 }
 
 /* active tab color */
 .slick-tabs .nav-link.active {
-  color: #f79323;
+  color: #ff0003;
   font-weight: 700;
 }
 
@@ -178,7 +182,7 @@
   bottom: -10px;
   width: 60%;
   height: 3px;
-  background: #f79323;
+  background: #ff0003;
   border-radius: 3px;
   transition: transform 250ms cubic-bezier(.2,.8,.2,1), opacity 200ms;
   opacity: 0;
@@ -229,7 +233,7 @@
 .big-card img { height: 280px; object-fit: cover; }
 .mini-card img { height: 95px; object-fit: cover; }
 
-.hover-red:hover { color: #f79323 !important; }
+.hover-red:hover { color: #ff0003 !important; }
 
 .meta-info { font-size: 0.82rem; color: #6b6b6b; }
 
