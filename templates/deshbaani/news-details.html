@@ -132,7 +132,7 @@ li {
     <div class="col-lg-9 col-md-7 col-sm-12">
       <div class="position-relative my-1">
        
-        <div class="card-bg-dark"style="box-shadow: 0 2px 18px rgb(0 0 0 / 55%); border-radius: 8px 8px 0px 0px;">
+        <div class="card-bg-dark"style=" border-radius: 8px 8px 0px 0px;">
           <div class="section-title">{{ Blogdetails.post_title }}</div>
            <div class="d-flex align-items-center mt-3">
             <p class="m-0">
@@ -142,7 +142,7 @@ li {
                 {% elif Blogdetails.journalist %}
                 Author :
                 <a href="{% url 'journalist_profile' Blogdetails.journalist.username %}"
-                  style="color: #cf1e25 !important;">
+                  style="color: #f79323 !important;">
                   {{ Blogdetails.journalist.first_name|default:""|capfirst }} 
                   {{ Blogdetails.journalist.last_name|default:""|capfirst }}
                 </a>
@@ -164,7 +164,7 @@ li {
         <img class="img-fluid w-100" src="{{ Blogdetails.post_image.url }}" style="object-fit: cover"
           alt="{{ Blogdetails.post_title }}" title="{{ Blogdetails.post_title }}" loading="lazy">
         {% endif %}
-        <div class="py-3 card-bg-dark" style="box-shadow: 0 2px 18px rgb(0 0 0 / 55%); border-radius: 0px 0px 8px 8px;">
+        <div class="py-3 card-bg-dark" style=" border-radius: 0px 0px 8px 8px;">
               <!-- 🌐 SOCIAL SHARE VERTICAL -->
               <!-- 🌟 HTML -->
                 <div class="social-share-vertical mb-2">
@@ -243,7 +243,7 @@ li {
         <div class="col-lg-4">
           <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}"><img class="" src="../upload/{{Blog.post_image}}" alt=""></a>
           
-          <div class="card-bg-dark mb-3" style="box-shadow: 0 2px 18px rgb(0 0 0 / 55%); border-radius: 8px;">
+          <div class="card-bg-dark mb-3" style=" border-radius: 8px;">
             
             <a class="news-title" href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
               <p>{{Blog.post_title|slice:":60"|safe}}...</p>
