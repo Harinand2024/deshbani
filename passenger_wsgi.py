@@ -1,1 +1,1 @@
-from dsehbaani.wsgi import application
+from deshbaani.wsgi import application

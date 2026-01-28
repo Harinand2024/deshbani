@@ -56,9 +56,9 @@ def Send_OTP_Signup(request):
         print(f"Generated OTP for {email}: {stored_otp}")
 
         send_mail(
-            "Your Secure OTP for Jan Punjab (Signup)",
-            f"Hello,\n\nYour OTP for signup is: {stored_otp}.\n\nPlease use this code within 5 minutes. If you didn't request this, please ignore this email.\n\nThank you,\nJan Punjab Team",
-            "no-reply@janpunjab.com",
+            "Your Secure OTP for Desh Baani (Signup)",
+            f"Hello,\n\nYour OTP for signup is: {stored_otp}.\n\nPlease use this code within 5 minutes. If you didn't request this, please ignore this email.\n\nThank you,\nDesh Baani Team",
+            "no-reply@deshbaani.com",
             [email],
             fail_silently=False,
         )
@@ -189,7 +189,7 @@ def Journalist_Sign_Up(request):
         journalist.languages.set(language)
         journalist.selected_equipment.set(selected_equipment) 
 
-        subject = 'Jan Punjab : We have successfully received your application'
+        subject = 'Desh Baani : We have successfully received your application'
         message = (
                 f"Dear {journalist.first_name} {journalist.last_name},\n\n"
                 f"We would like to inform you that We have successfully received your application {journalist.email}.\n\n"
@@ -200,12 +200,12 @@ def Journalist_Sign_Up(request):
                 f"We will review your details and notify you once the verification process is complete. If we require any further information, we will reach out to you via this email.\n\n"
                 f"If you have any questions or need assistance, please feel free to contact us.\n\n"
                 f"Best regards,\n"
-                f"Jan Punjab Security Team\n"
-                f"Contact Us: info@janpunjab.com\n"
-                f"Website: www.janpunjab.com"
+                f"Desh Baani Security Team\n"
+                f"Contact Us: info@deshbaani.com\n"
+                f"Website: www.deshbaani.com"
             )
 
-        from_email = 'no-reply@janpunjab.com'
+        from_email = 'no-reply@deshbaani.com'
         recipient_list = [journalist.email]
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
@@ -266,20 +266,20 @@ def Journalist_SignIn(request):
                 return JsonResponse({"status": "error", "message": "Invalid password"}, status=401)
 
             if journalist.status == "inactive":
-                subject = 'Account Under Verification - Jan Punjab'
+                subject = 'Account Under Verification - Desh Baani'
                 message = (
                     f"Dear {journalist.first_name} {journalist.last_name},\n\n"
                     f"We would like to inform you that your account is currently under verification. "
                     f"As a result, you are unable to access certain features of the platform until the verification process is complete.\n\n"
-                    f"If you have any concerns or questions, please do not hesitate to reach out to us at info@janpunjab.com.\n\n"
+                    f"If you have any concerns or questions, please do not hesitate to reach out to us at info@deshbaani.com.\n\n"
                     f"We appreciate your patience and understanding during this process.\n\n"
                     f"Best regards,\n"
-                    f"Jan Punjab Team\n"
-                    f"Contact Us: info@janpunjab.com\n"
-                    f"Website: www.janpunjab.com"
+                    f"Desh Baani Team\n"
+                    f"Contact Us: info@deshbaani.com\n"
+                    f"Website: www.deshbaani.com"
                 )
 
-                from_email = 'no-reply@janpunjab.com'
+                from_email = 'no-reply@deshbaani.com'
                 recipient_list = [journalist.email]
                 send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
@@ -304,12 +304,12 @@ def Journalist_SignIn(request):
                 f"If you did not initiate this action, we strongly advise you to immediately change your password and secure your account.\n\n"
                 f"Should you have any concerns or require assistance, please do not hesitate to contact us.\n\n"
                 f"Best regards,\n"
-                f"Jan Punjab Security Team\n"
-                f"Contact Us: info@janpunjab.com\n"
-                f"Website: www.janpunjab.com"
+                f"Desh Baani Security Team\n"
+                f"Contact Us: info@deshbaani.com\n"
+                f"Website: www.deshbaani.com"
             )
 
-            from_email = 'no-reply@janpunjab.com'
+            from_email = 'no-reply@deshbaani.com'
             recipient_list = [journalist.email]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
@@ -340,19 +340,19 @@ def Journalist_Forgot_Password(request):
             token = signer.sign(journalist.id)
             reset_url = f"{request.scheme}://{request.get_host()}/journalist/reset-password/{token}/"
 
-            subject = 'Jan Punjab: Password Reset Request'
+            subject = 'Desh Baani: Password Reset Request'
             message = (
                 f"Dear {journalist.first_name} {journalist.last_name},\n\n"
-                f"We have received a request to reset your password for your account on Jan Punjab.\n\n"
+                f"We have received a request to reset your password for your account on Desh Baani.\n\n"
                 f"To reset your password, please click on the following link:\n"
                 f"{reset_url}\n\n"
                 f"If you did not initiate this request, please disregard this email and your account remains secure.\n\n"
                 f"Best regards,\n"
-                f"Jan Punjab Security Team"
-                f"Contact Us: info@janpunjab.com\n"
-                f"Website: www.janpunjab.com"
+                f"Desh Baani Security Team"
+                f"Contact Us: info@deshbaani.com\n"
+                f"Website: www.deshbaani.com"
             )
-            from_email = 'no-reply@janpunjab.com'
+            from_email = 'no-reply@deshbaani.com'
             recipient_list = [journalist.email]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
@@ -395,17 +395,17 @@ def Journalist_Reset_Password(request, token):
             journalist.save()
 
             # Send confirmation email
-            subject = 'Jan Punjab: Password Reset Successfully'
+            subject = 'Desh Baani: Password Reset Successfully'
             message = (
                 f"Dear {journalist.first_name} {journalist.last_name},\n\n"
                 f"Your password has been successfully reset.\n\n"
                 f"If you did not perform this action, please contact support immediately.\n\n"
                 f"Best regards,\n"
-                f"Jan Punjab Security Team"
-                f"Contact Us: info@janpunjab.com\n"
-                f"Website: www.janpunjab.com"   
+                f"Desh Baani Security Team"
+                f"Contact Us: info@deshbaani.com\n"
+                f"Website: www.deshbaani.com"   
             )
-            from_email = 'no-reply@janpunjab.com'
+            from_email = 'no-reply@deshbaani.com'
             recipient_list = [journalist.email]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 

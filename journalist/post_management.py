@@ -562,18 +562,18 @@ def AddArtist(request):
         subject = "Please Complete Your Registration"
         message = (
             f"Dear {first_name} {last_name},\n\n"
-            f"You have been invited to register on Jan Punjab by:\n"
+            f"You have been invited to register on Desh Baani by:\n"
             f"Organisation: {journalist.organisation_name}\n"
             f"Email: {journalist.email}\n"
             f"Phone: {journalist.phone_number}\n\n"
             f"Click the link below to complete your registration:\n"
-            f"https://www.janpunjab.com/auth/sign-up/\n\n"
+            f"https://www.deshbaani.com/auth/sign-up/\n\n"
             f"If you are already registered, you may ignore this email.\n\n"
-            f"Warm regards,\nDsehbaani News Security Team\n"
-            f"📧 info@janpunjab.com\n🌐 www.janpunjab.com"
+            f"Warm regards,\ndeshbaani News Security Team\n"
+            f"📧 info@deshbaani.com\n🌐 www.deshbaani.com"
         )
 
-        from_email = 'no-reply@janpunjab.com'
+        from_email = 'no-reply@deshbaani.com'
         recipient_list = [email]
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
         messages.success(request, 'The invitation link has been successfully sent!')
