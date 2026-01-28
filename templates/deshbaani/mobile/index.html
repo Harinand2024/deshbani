@@ -172,7 +172,7 @@
       </div>
 
       <!-- 🌟 Top Breaking News + 2 More News -->
-      <div class="row mb-4">
+      <div class="row">
         <!-- Top Stories -->
         <div class="col-lg-4 col-md-6 mb-3">
           <div class="card-bg-dark shadow-sm border top-stories-widget h-100">
@@ -208,7 +208,7 @@
         <div class="col-lg-8 col-md-6">
           <div class="row">
             <!-- News 3 -->
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3">
               {% for Blog in bnews|slice:"3:4" %}
               <div class="card-bg-dark shadow-sm border rounded h-100">
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
@@ -231,7 +231,7 @@
             </div>
 
             <!-- News 4 -->
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3">
               {% for Blog in bnews|slice:"4:5" %}
               <div class="card-bg-dark shadow-sm border rounded h-100">
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
