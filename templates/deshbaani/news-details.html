@@ -234,8 +234,8 @@ li {
       {% endfor %} -->
       {# -----------main-news--------- #}
 
-      <div class="row mt-3">
-         <div class="mb-3">
+      <div class="row mt-5">
+         <div class="mb-1">
           <div class="section-title">Articles</div>
           <div class="double-underline"></div>
         </div>
@@ -243,13 +243,13 @@ li {
         <div class="col-lg-4">
           <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}"><img class="" src="../upload/{{Blog.post_image}}" alt=""></a>
           
-          <div class="card-bg-dark mb-3" style=" border-radius: 8px;">
+          <div class="card-bg-dark mb-3" style=" border-radius: 0px 0px 8px 8px;">
             
             <a class="news-title" href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
               <p>{{Blog.post_title|slice:":60"|safe}}...</p>
             </a>
             <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="news-description">
-              <p>{{Blog.post_short_des|slice:":100"|safe}}</p>
+              <p>{{Blog.post_short_des|slice:":80"|safe}}</p>
             </a>
 
             <div class="d-flex align-items-center px-2 justify-content-start news-meta">
