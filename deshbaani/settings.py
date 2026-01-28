@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'django_user_agents',
     #'django_crontab',
     #'embed_video',
+    'rest_framework',
+    'webstories',
 ]
 SITE_ID = 1
 from easy_thumbnails.conf import Settings as thumbnail_settings
@@ -97,6 +99,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'setting.context.setting_context',
                 'setting.context.cms_context',
+                
+                'webstories.context_processors.navigation.blog_categories',
             ],
         },
     },
@@ -120,6 +124,14 @@ DATABASES = {
         'PORT': '3306',       
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'newsibleasia.sqlite3',
+#     }
+# }
+
 
 # DATABASES = {
 #     'default': {
