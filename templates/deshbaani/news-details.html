@@ -132,7 +132,7 @@ li {
     <div class="col-lg-9 col-md-7 col-sm-12">
       <div class="position-relative my-1">
        
-        <div class="card-bg-dark"style="border-radius: 8px; background: #fff;
+        <div class="card-bg-dark mt-5"style="border-radius: 8px; background: #fff;
     padding: 5px 10px;">
           <div class="section-title mt-4">{{ Blogdetails.post_title }}</div>
           <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-3 small">
@@ -254,30 +254,21 @@ li {
           <div class="section-title mt-2">Articles</div>
           <div class="double-underline"></div>
         </div>
-        {% for Blog in BlogData %}
-        <div class="col-lg-4">
-          <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}"><img class="" src="../upload/{{Blog.post_image}}" alt=""></a>
-          
-          <div class="card-bg-dark mb-3" style="border-radius: 8px; background: #fff;
-    padding: 5px 10px;">
-            
-            <a class="news-title" href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
-              <p>{{Blog.post_title|slice:":60"|safe}}...</p>
-            </a>
-            <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="news-description">
-              <p>{{Blog.post_short_des|slice:":80"|safe}}</p>
-            </a>
-
-            <div class="d-flex align-items-center px-2 justify-content-start news-meta">
-              <small> {{Blog.schedule_date|date}}</small>
-              <small class="mx-2" > {{ Blog.schedule_date|time }}</small>
-              <small ><i class="far fa-eye mr-2"></i>{{Blog.post_status|add:Blog.viewcounter}}</small>
-              <div style="--custom-bottom: 0px; --custom-right: 0px; margin-left:10px;">
-                {% include 'share.html' with posts=Blog %}
+        {% for article in Articale %}
+        <div class="col-lg-3 col-md-12  col-sm-12 mb-3">
+          <a href="/{{ article.newsfrom.slug }}/{{ article.post_cat.sub_cat.cat_slug }}/{{ article.slug }}" class="text-decoration-none ">
+            <div class="article-card shadow-sm rounded overflow-hidden ">
+              <div class="article-image">
+                <img src="{{ article.post_image.url }}" class="img-fluid w-100" alt="{{ article.post_title }}" style="height: 160px; object-fit: cover;">
+              </div>
+              <div class="p-2 card-bg-dark">
+                <div class="fw-semibold mb-1" style="font-size: 13px; line-height: 1.4;">
+                  {{ article.post_title|truncatechars:58 }}
+                </div>
+                <small class="">{{ article.post_date|date:"M d, Y" }}</small>
               </div>
             </div>
-          </div>
-
+          </a>
         </div>
         {% endfor %}
       </div>

@@ -1,41 +1,37 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="insta-section">
-  <h4 class="text-white">Follow us on Instagram<a style="color:#ff0003 !important;" href="https://www.instagram.com/deshbaani/"> @Deshbaani</a></h4>
-
-  <div class="swiper insta-slider py-3">
+<div class="shorts-wrap">
+  <!-- REELS SLIDER -->
+  <div class="swiper insta-slider p-0 m-0">
     <div class="swiper-wrapper">
-     {% for truet in tt %}
-<div class="swiper-slide insta-slide">
 
-  <!-- Insta icon overlay -->
-  {% if profile_setting.instagram %}
-  <a href="{{ profile_setting.instagram }}" 
-     target="_blank" 
-     class="insta-icon-overlay">
-      <i class="bi bi-instagram"></i>
-  </a>
-  {% endif %}
+     {% for truet in Reels %}
+      <div class="swiper-slide mx-3">
+        <a href="https://www.youtube.com/watch?v={{ truet.video_url }}"
+            target="_blank">
 
-  <!-- Reel Fancybox link -->
-  <a data-fancybox="reels"
-     data-src="https://www.youtube.com/embed/{{ truet.video_url }}"
-     data-type="iframe">
-    <div class="reelimg">
-      <p class="reelplaybut">
-        <i class="fa fa-play-circle" aria-hidden="true"></i>
-      </p>
-      <img src="https://img.youtube.com/vi/{{ truet.video_url }}/mqdefault.jpg"
-           alt="{{ truet.slug }}"
-           class="reelthum">
-    </div>
-  </a>
+            <div class="reelimg">
+              <span class="reelplay">
+                <i class="fa fa-play-circle"></i>
+              </span>
 
-</div>
-{% endfor %}
+              <img src="https://img.youtube.com/vi/{{ truet.video_url }}/mqdefault.jpg"
+                  class="reelthumb"
+                  alt="{{ truet.slug }}">
+            </div>
+
+          </a>
+
+
+      </div>
+      {% endfor %}
+
     </div>
   </div>
+
 </div>
 
 
@@ -43,104 +39,102 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
 <script>
-new Swiper(".insta-slider", {
-  slidesPerView: "auto",
-  spaceBetween: 10,
-  freeMode: true, // allows natural scroll feel
-  mousewheel: true,
-  grabCursor: true,
-  breakpoints: {
-    768: {
-      spaceBetween: 15
-    }
-  }
-});
+document.addEventListener("DOMContentLoaded", function () {
 
-Fancybox.bind('[data-fancybox="reels"]', {
-  Toolbar: {
-    display: ["close"] // show close button
-  },
-  on: {
-    reveal: (fancybox, slide) => {
-      console.log("Video opened:", slide.src);
+  new Swiper(".insta-slider", {
+    slidesPerView: "auto",
+    spaceBetween: 15,
+    freeMode: true,
+    grabCursor: true
+  });
+
+  Fancybox.bind('[data-fancybox="reels"]', {
+    Toolbar: {
+      display: ["close"]
     }
-  }
+  });
+
 });
 </script>
 
+
 <style>
-  .insta-icon-overlay {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 200;
-  background: rgba(0,0,0,0.6);
-  padding: 6px 8px;
-  border-radius: 6px;
-  color: white !important;
-  font-size: 18px;
+ 
+
+/* TITLE */
+.shorts-title {
+  font-weight: 700;
+  letter-spacing: 1px;
 }
-.insta-icon-overlay:hover {
+
+.shorts-line {
+  width: 45px;
+  height: 3px;
   background: #ff0003;
-}
-.swiper-slide {
-  position: relative;
+  display: block;
+  margin-bottom: 15px;
 }
 
-  .insta-section {
-  background: #222;
-  padding: 20px;
+/* FOLLOW CARD */
+.insta-follow-link {
+  text-decoration: none;
+}
+
+.insta-follow-card {
+  background: linear-gradient(135deg, #000, #1b1b1b);
+  border-radius: 10px;
+  padding: 25px 20px;
   text-align: center;
-  color: white;
-  border-radius: 6px;
+  margin-bottom: 20px;
 }
-.insta-section  span {
+
+.insta-follow-card h4 {
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.insta-follow-card p {
   color: #ff0003;
-}
-.insta-section .insta-slide {
-  width: 250px !important;
+  margin: 0;
 }
 
-.insta-section .swiper-wrapper {
-  padding-bottom: 5px; /* little space for scroll shadow */
-}
-
-.insta-section .reelimg {
-  position: relative;
-  overflow: hidden;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.insta-section .reelthum {
+/* SWIPER */
+.insta-slider {
   width: 100%;
-  border-radius: 5px;
-  transition: transform 0.4s ease;
 }
 
-.insta-section .reelimg:hover .reelthum {
-  transform: scale(1.05);
+.swiper-wrapper {
+  display: flex;
 }
 
-.insta-section .reelplaybut {
+.swiper-slide {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+/* REEL CARD */
+.reelimg {
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.reelthumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reelplay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
-  border-radius: 50%;
-  padding: 7px;
-  font-size: 24px;
-  transition: all 0.3s ease;
-  width: 50px;
-  height: 50px;
-}
-
-.insta-section .reelimg:hover .reelplaybut {
-  background: #ff0003;
-  box-shadow: 0 0 15px #ff0003;
-  transform: translate(-50%, -50%) scale(1.1);
-  z-index: 100;
+  font-size: 48px;
+  color: #fff;
+  z-index: 10;
 }
 
 </style>

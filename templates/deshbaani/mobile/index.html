@@ -13,7 +13,7 @@
       </a>
     {% endfor %}
   </div>
-  <div class="row pt-3">
+  <div class="row">
     <!-- ================= LEFT SECTION (col-9): News Content ================= -->
     <div class="col-lg-9 col-md-12">
 
@@ -290,12 +290,7 @@
         </div>
       </div>
 
-      <aside class="ads-sidebar">
-        <div class="card-bg-dark shadow-sm border rounded  text-center p-2 my-3 ">
-          <p class="small">ADVERTISEMENT</p>
-          <img src="" alt="Ad" class="img-fluid rounded">
-        </div>
-      </aside>
+    
     </div>
   </div>
 </div>
@@ -337,11 +332,7 @@
      
       {% include 'popular-videos.html' %} 
 
-       <div class="card-bg-dark shadow-sm border rounded  text-center p-2 my-3 ">
-          <p class="small">ADVERTISEMENT</p>
-          <img src="" alt="Ad" class="img-fluid rounded">
-        </div>
-    </div>
+     
 </section>
 
 
@@ -471,45 +462,20 @@
     </div>
 
     <!-- ✅ RIGHT SIDEBAR -->
-    <div class="col-lg-3 col-md-12 col-sm-12">
-      {% include 'reels-news.html' %}
-
+    <div class="col-lg-3 col-md-12 col-sm-12 mb-5">
+     <div class="mb-3">
+        <h3 class=""><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+    <path d="m19.45,3.88c1.12,1.82.48,4.15-1.42,5.22l-1.32.74.94.41c1.36.58,2.27,1.85,2.35,3.27.08,1.43-.68,2.77-1.97,3.49l-8,4.47c-1.91,1.06-4.35.46-5.48-1.35-1.12-1.82-.48-4.15,1.42-5.22l1.33-.74-.94-.41c-1.36-.58-2.27-1.85-2.35-3.27-.08-1.43.68-2.77,1.97-3.49l8-4.47c1.91-1.06,4.35-.46,5.48,1.35Z" fill="#f03"></path>
+    <path d="m10,15l5-3-5-3v6Z" fill="#fff"></path>
+  </svg> SHORTS</h3>
+        <!-- <div class="double-underline"></div> -->
+      </div>
+      {% include 'reels-news.html' %} 
+    </div>
       
     </div>
   </div>
 </div>
-
-<!-- Video News Section -->
-<div class="col-lg-8 col-md-12 col-sm-12 py-4 bg-white mb-5">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h5 class="fw-bold text-uppercase m-0">Video News</h5>
-    <a href="/all-video-news/all" class="text-btn text-decoration-none fw-semibold">View All</a>
-  </div>
-  <div class="slider-container-top">
-    <div class="main-swiper">
-      <div class="swiper-wrapper">
-        {% for CatVid in videos %}
-        <div class="swiper-slide">
-          <a href="/video/{{CatVid.slug}}">
-            <img class="rounded" src="https://img.youtube.com/vi/{{CatVid.video_url}}/hqdefault.jpg"
-              alt="{{CatVid.video_title}}" title="{{CatVid.video_title}}" loading="lazy" width="709" height="463" />
-          </a>
-          <div class="dxv-overlay">
-            <span class="category">{{ CatVid.News_Category }}</span>
-            <a href="/video/{{CatVid.slug}}">
-              <h6 class="text-btn">{{ CatVid.video_title }}</h6>
-            </a>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
-  </div>
-</div>
-
-
 
 
 <!-- jQuery & Owl Carousel -->
@@ -696,7 +662,66 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: "auto",
+    spaceBetween: 8,
 
+    loop: true,
+    loopAdditionalSlides: 10,   // ⭐⭐ MAIN FIX
+    watchOverflow: false,       // ⭐⭐ IMPORTANT
 
+    grabCursor: true,
+
+    autoplay: {
+      delay: 2800,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+
+    speed: 700,
+  });
+
+  function changeMainVideo(videoId, title) {
+    const box = document.getElementById("mainVideoContainer");
+    if (!box) return;
+
+    box.innerHTML = `
+       <iframe
+        width="100%"
+        height="210"
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&origin=${window.location.origin}"
+        title="${videoTitle}"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy">
+      </iframe>`;
+  }
+
+  document.addEventListener("click", e => {
+    const el = e.target.closest(".thumb-video");
+    if (!el) return;
+    e.preventDefault();
+
+    document.querySelectorAll(".custom-slide")
+      .forEach(s => s.classList.remove("active"));
+    el.closest(".custom-slide").classList.add("active");
+
+    changeMainVideo(el.dataset.video, el.dataset.title);
+    swiper.autoplay.start();
+  });
+
+});
+
+</script>
+<style>
+  .custom-slide {
+  width: 105px !important;
+  flex-shrink: 0;   /* ⭐ REQUIRED */
+}
+
+</style>
 {% endblock %}

@@ -376,7 +376,7 @@
             <div class="col-lg-8">
                 {% for Blog in trendpost|slice:":3" %}
                 <div class="post-block-style-wrapper post-block-template-four mb-4 border rounded-3 overflow-hidden shadow-sm">
-                <div class="post-block-style-inner d-flex flex-column flex-md-row align-items-start gap-3 p-3">
+                <div class="card-bg-dark post-block-style-inner d-flex flex-column flex-md-row align-items-start gap-3 p-3">
                     <!-- Image -->
                     <div class="post-block-media-wrap flex-shrink-0 m-0">
                     <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
@@ -424,7 +424,7 @@
             <div class="col-lg-4">
                 {% for Blog in trendpost|slice:"3:7" %}
                 <div class="post-block-style-wrapper post-block-template-two mb-4 border rounded-3 overflow-hidden shadow-sm">
-                <div class="post-block-style-inner d-flex align-items-start gap-3 p-3">
+                <div class="card-bg-dark p-3 post-block-style-inner d-flex align-items-start gap-3 p-3">
                     <div class="post-block-media-wrap flex-shrink-0" >
                     <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                         <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy" class="img-fluid rounded">
@@ -595,12 +595,12 @@
                 <div class="col-lg-3">
                     <article class="post-block-style-wrapper post-block-template-one post-block-template-medium mb-40">
                         <div class="post-block-style-inner">
-                            <div class="post-block-media-wrap">
+                            <div class="">
                                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" title="{{ Blog.post_title }}" loading="lazy">
                                 </a>
                             </div>
-                            <div class="post-block-content-wrap">
+                            <div class="card-bg-dark p-3">
                                 <div class="post-item-title">
                                     <h2 class="post-title">
                                         <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">{{ Blog.post_title|truncatechars:60 }}</a>
@@ -679,6 +679,9 @@
 <script src="{% static 'assets/category/js/app.js' %}"></script>
 
 <style>
+    .video-section{
+        background: linear-gradient(to bottom right, #1700a5, #ff070a) !important;
+    }
     .post-block-style-wrapper .post-block-media-wrap a img {
         transition: .35s ease-in;
         display: block;
@@ -699,8 +702,8 @@
         gap: 10px !important;
     }
     .blog-pagination-area ul.page-numbers li span.page-numbers {
-    color: #e01f15 !important;
-    border-color: #e01f15 !important;
+    color: #ff070a !important;
+    border-color: #ff070a !important;
 }
 
 /* 🎨 Base Design */

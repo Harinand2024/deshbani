@@ -89,7 +89,7 @@
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
-                <div class="py-3 px-2">
+                <div class="py-3">
                   <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:60 }}</div>
                   </a>
@@ -111,7 +111,7 @@
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
-                <div class="py-3 px-2">
+                <div class="py-3">
                   <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:60 }}</div>
                   </a>
@@ -139,7 +139,7 @@
               
               <h6 class="mb-0 fw-bold text-danger">BREAKING</h6>
             </div>
-            <div class="p-2">
+            <div class="">
               {% for Blog in bnews|slice:"0:3" %}
               <div class="d-flex align-items-center mb-3 story-item">
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
@@ -172,7 +172,7 @@
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
-                 <div class="py-3 px-2">
+                 <div class="py-3">
                   <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                   </a>
@@ -195,7 +195,7 @@
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                   <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                 </a>
-                <div class="py-3 px-2">
+                <div class="py-3">
                   <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                     <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                   </a>
@@ -223,7 +223,7 @@
                 
                 <h6 class="mb-0 fw-bold text-danger">INDIA</h6>
               </div>
-              <div class="p-2">
+              <div class="">
                 {% for Blog in bnews|slice:"0:3" %}
                 <div class="d-flex align-items-center mb-3 story-item">
                   <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
@@ -256,7 +256,7 @@
                   <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                   </a>
-                  <div class="py-3 px-2">
+                  <div class="py-3">
                     <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                       <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                     </a>
@@ -278,7 +278,7 @@
                   <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}">
                     <img src="{{ Blog.post_image.url }}" alt="{{ Blog.post_title }}" class="rounded-top img-fluid" loading="lazy">
                   </a>
-                  <div class="py-3 px-2">
+                  <div class="py-3">
                     <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="text-decoration-none">
                       <div class="fw-semibold small hover-title">{{ Blog.post_title|truncatechars:110 }}</div>
                     </a>
@@ -308,7 +308,7 @@
               
               <h6 class="mb-0 fw-bold text-danger">TOP STORIES</h6>
             </div>
-            <div class="p-2">
+            <div class="">
               {% for Blog in headline|slice:"0:3" %}
               <div class="d-flex align-items-center mb-3 story-item">
                 <a href="/{{ Blog.newsfrom.slug }}/{{ Blog.post_cat.sub_cat.cat_slug }}/{{ Blog.slug }}" class="me-2">
